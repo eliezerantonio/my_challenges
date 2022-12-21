@@ -47,7 +47,7 @@ class RightLeftShake extends AnimatorWidget {
           key: key,
           child: child,
           definition:
-              ShakeAnimation(preferences: preferences, first: 10, second: -2),
+              ShakeAnimation(preferences: preferences, first: 8, second: -2),
         );
 }
 
@@ -73,7 +73,7 @@ class ShakeAnimation extends AnimationDefinition {
             0.0,
             0.0,
           ),
-          alignment: const FractionalOffset(0.8, 0.8),
+          alignment: const FractionalOffset(0.5, 0.5),
         ),
       );
 
@@ -86,8 +86,8 @@ class ShakeAnimation extends AnimationDefinition {
         [
           const TweenPercentage(percent: 0, value: origin),
           TweenPercentage(percent: 20, value: first),
-          TweenPercentage(percent: 70, value: second),
-          const TweenPercentage(percent: 80, value: origin),
+          TweenPercentage(percent: 80, value: second),
+          const TweenPercentage(percent: 100, value: origin),
         ],
       ),
     };

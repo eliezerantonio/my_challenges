@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
-class SimpleInterest extends StatelessWidget {
-  const SimpleInterest(
-      {Key? key,
-      required this.capitalController,
-      required this.taxController,
-      required this.timeController})
-      : super(key: key);
-  final TextEditingController capitalController, taxController, timeController;
+class SimpleInterest extends StatefulWidget {
+  const SimpleInterest({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<SimpleInterest> createState() => _SimpleInterestState();
+}
+
+class _SimpleInterestState extends State<SimpleInterest> {
+  TextEditingController timeController = TextEditingController();
+  TextEditingController capitalController = TextEditingController();
+  TextEditingController taxController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -221,6 +226,7 @@ class TaxTimeTextField extends StatelessWidget {
       width: 50,
       height: 20,
       child: TextField(
+        controller: controller,
         keyboardType: TextInputType.number,
         style: const TextStyle(
             fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black),
