@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SimpleInterest extends StatelessWidget {
-  const SimpleInterest({Key? key}) : super(key: key);
-
+  const SimpleInterest(
+      {Key? key,
+      required this.capitalController,
+      required this.taxController,
+      required this.timeController})
+      : super(key: key);
+  final TextEditingController capitalController, taxController, timeController;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,20 +80,21 @@ class SimpleInterest extends StatelessWidget {
                             const SizedBox(height: 15.0),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                LeftTitle(text: 'Capital Inicial (c):'),
-                                CapitalTextField(),
+                              children: [
+                                const LeftTitle(text: 'Capital Inicial (c):'),
+                                CapitalTextField(controller: capitalController),
                               ],
                             ),
                             const Divider(),
                             const SizedBox(height: 15.0),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                LeftTitle(text: 'Taxa de Juros % (i):'),
-                                SizedBox(width: 1),
-                                TaxTimeTextField(text: '5%'),
-                                Text(
+                              children: [
+                                const LeftTitle(text: 'Taxa de Juros % (i):'),
+                                const SizedBox(width: 1),
+                                TaxTimeTextField(
+                                    text: '5%', controller: taxController),
+                                const Text(
                                   'Anual',
                                   style: TextStyle(
                                       fontSize: 15.0,
@@ -100,11 +106,12 @@ class SimpleInterest extends StatelessWidget {
                             const SizedBox(height: 15.0),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                LeftTitle(text: 'Tempo (n):'),
-                                SizedBox(width: 55),
-                                TaxTimeTextField(text: '1'),
-                                Text(
+                              children: [
+                                const LeftTitle(text: 'Tempo (n):'),
+                                const SizedBox(width: 55),
+                                TaxTimeTextField(
+                                    text: '1', controller: timeController),
+                                const Text(
                                   'Anual',
                                   style: TextStyle(
                                       fontSize: 15.0,
@@ -169,13 +176,13 @@ class SimpleInterest extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: const [
                                 Text(
-                                  'Valor Total Final',
+                                  'Valor Total Final (j+c):',
                                   style: TextStyle(
                                       fontSize: 15.0,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  'j + c : 1.040,00 AOA',
+                                  '1.040,00 AOA',
                                   style: TextStyle(
                                       fontSize: 15.0,
                                       fontWeight: FontWeight.bold),
@@ -203,8 +210,11 @@ class SimpleInterest extends StatelessWidget {
 }
 
 class TaxTimeTextField extends StatelessWidget {
-  const TaxTimeTextField({Key? key, required this.text}) : super(key: key);
+  const TaxTimeTextField(
+      {Key? key, required this.text, required this.controller})
+      : super(key: key);
   final String? text;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -225,7 +235,7 @@ class TaxTimeTextField extends StatelessWidget {
 class CapitalTextField extends StatelessWidget {
   const CapitalTextField({
     Key? key,
-    this.controller,
+    required this.controller,
   }) : super(key: key);
   final TextEditingController? controller;
   @override
@@ -234,6 +244,9 @@ class CapitalTextField extends StatelessWidget {
       width: 100,
       height: 20,
       child: TextField(
+        toolbarOptions:
+            const ToolbarOptions(copy: true, paste: false, selectAll: true),
+        cursorWidth: 0.5,
         controller: controller,
         keyboardType: TextInputType.number,
         style: const TextStyle(
