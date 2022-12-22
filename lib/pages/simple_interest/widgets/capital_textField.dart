@@ -16,7 +16,7 @@ class _CapitalTextFieldState extends State<CapitalTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100,
+      width: 110,
       height: 20,
       child: TextField(
         toolbarOptions:

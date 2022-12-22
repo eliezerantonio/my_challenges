@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_contabil_v2/pages/simple_interest/widgets/resolution_info.dart';
 import 'package:mini_contabil_v2/widget/custom_drawer.dart';
 
 import 'widgets/calc_button.dart';
@@ -37,9 +38,6 @@ class _SimpleInterestState extends State<SimpleInterest> {
               children: [
                 CenterCard(
                   scaffoldKey: _scaffoldKey,
-                  capitalController: capitalController,
-                  taxController: taxController,
-                  timeController: timeController,
                 ),
               ],
             ),
@@ -54,16 +52,10 @@ class CenterCard extends StatefulWidget {
   const CenterCard({
     Key? key,
     required GlobalKey<ScaffoldState> scaffoldKey,
-    required this.capitalController,
-    required this.taxController,
-    required this.timeController,
   })  : _scaffoldKey = scaffoldKey,
         super(key: key);
 
   final GlobalKey<ScaffoldState> _scaffoldKey;
-  final TextEditingController capitalController;
-  final TextEditingController taxController;
-  final TextEditingController timeController;
 
   @override
   State<CenterCard> createState() => _CenterCardState();
@@ -71,12 +63,16 @@ class CenterCard extends StatefulWidget {
 
 class _CenterCardState extends State<CenterCard> {
   // Initial Selected Value
-  String initialValue = 'Anual';
+  String initialRate = 'Anual';
+  String initialTerm = 'Anual';
   // List of items in dropdown menu
   final _periods = [
     'Anual',
     'Mensal',
   ];
+  final TextEditingController capitalController = TextEditingController();
+  final TextEditingController rateController = TextEditingController();
+  final TextEditingController termController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +119,7 @@ class _CenterCardState extends State<CenterCard> {
                 const SizedBox(height: 15.0),
                 const LeftTitle(text: 'Capital Inicial (c):'),
                 const SizedBox(height: 20.0),
-                CapitalTextField(controller: widget.capitalController),
+                CapitalTextField(controller: capitalController),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 Row(
@@ -134,12 +130,12 @@ class _CenterCardState extends State<CenterCard> {
                       children: [
                         const LeftTitle(text: 'Taxa de Juros % (i):'),
                         const SizedBox(height: 20.0),
-                        CapitalTextField(controller: widget.timeController),
+                        CapitalTextField(controller: rateController),
                         SizedBox(
                           width: 85,
                           height: 40,
                           child: DropdownButton(
-                            value: initialValue,
+                            value: initialRate,
                             items: _periods.map((String items) {
                               return DropdownMenuItem(
                                 value: items,
@@ -153,7 +149,7 @@ class _CenterCardState extends State<CenterCard> {
                             }).toList(),
                             onChanged: (String? newValue) {
                               setState(() {
-                                initialValue = newValue!;
+                                initialRate = newValue!;
                               });
                             },
                           ),
@@ -165,12 +161,12 @@ class _CenterCardState extends State<CenterCard> {
                       children: [
                         const LeftTitle(text: 'Tempo (n):'),
                         const SizedBox(height: 20.0),
-                        CapitalTextField(controller: widget.timeController),
+                        CapitalTextField(controller: termController),
                         SizedBox(
                           width: 85,
                           height: 40,
                           child: DropdownButton(
-                            value: initialValue,
+                            value: initialTerm,
                             items: _periods.map((String items) {
                               return DropdownMenuItem(
                                 value: items,
@@ -184,7 +180,7 @@ class _CenterCardState extends State<CenterCard> {
                             }).toList(),
                             onChanged: (String? newValue) {
                               setState(() {
-                                initialValue = newValue!;
+                                initialTerm = newValue!;
                               });
                             },
                           ),
@@ -207,7 +203,34 @@ class _CenterCardState extends State<CenterCard> {
                 ),
                 const Divider(thickness: 2, indent: 5, endIndent: 5),
                 const SizedBox(height: 10),
-                const Center(child: CalculateButton()),
+                Center(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CalculateButton(
+                      text: 'Calcular',
+                      colors: [
+                        Colors.blue.shade300,
+                        Colors.blue.shade400,
+                        Colors.blue.shade500,
+                      ],
+                      onPressed: () {
+                        print('object');
+                      },
+                    ),
+                    CalculateButton(
+                      text: 'Limpar',
+                      colors: [
+                        Colors.red.shade300,
+                        Colors.red.shade400,
+                        Colors.red.shade500,
+                      ],
+                      onPressed: () {
+                        print('object');
+                      },
+                    )
+                  ],
+                )),
                 const SizedBox(height: 10),
               ],
             ),
@@ -216,34 +239,19 @@ class _CenterCardState extends State<CenterCard> {
               children: [
                 const ResolutionTag(text: 'Resolução'),
                 const SizedBox(height: 15.0),
-                const LeftTitle(text: 'Formula: c * i * n'),
+                const ResolutionInfo(info: 'Formula:', data: 'c * i * n'),
                 const Divider(),
                 const SizedBox(height: 15.0),
-                const Text(
-                  'j: 1000,00 * 5% * 2',
-                  style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey),
-                ),
+                const ResolutionInfo(info: 'j:', data: '1000,00 * 5% * 2'),
                 const Divider(),
                 const SizedBox(height: 15.0),
-                Text(
-                  'j: ${widget.capitalController.text} * ${widget.taxController.text} * ${widget.timeController.text}',
-                  style: const TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey),
-                ),
+                ResolutionInfo(
+                    info: 'j:',
+                    data:
+                        '${capitalController.text} * ${rateController.text} * ${termController.text}'),
                 const Divider(),
                 const SizedBox(height: 15.0),
-                const Text(
-                  'j: 40,00 AOA',
-                  style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey),
-                ),
+                const ResolutionInfo(info: 'j:', data: '40,00 AOA'),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 Row(
@@ -268,5 +276,17 @@ class _CenterCardState extends State<CenterCard> {
         ),
       ),
     );
+  }
+
+  double _calSimpleInterest(String newValue) {
+    String result;
+    double principal = double.parse(capitalController.text);
+    double rate = double.parse(rateController.text);
+    double term = double.parse(termController.text);
+    double netPayableAmount = 0;
+
+    netPayableAmount = principal * (principal * rate * term) / 100;
+
+    return netPayableAmount;
   }
 }
