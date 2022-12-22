@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_contabil_v2/consts.dart';
 import 'package:mini_contabil_v2/home_page.dart';
+import 'package:mini_contabil_v2/pages/calc_rate/calc_rate.dart';
 import 'package:mini_contabil_v2/pages/simple_interest/simple_interest.dart';
 
 class RouteGenerator {
@@ -8,8 +9,11 @@ class RouteGenerator {
     switch (settings.name) {
       case homeRoute:
         return MaterialPageRoute(builder: (_) => const HomePage());
-      case simpleInterest:
-        return MaterialPageRoute(builder: (_) => const SimpleInterest());
+      case calcSimpleInterest:
+        return MaterialPageRoute(
+            builder: (_) => const CalcSimpleInterestPage());
+      case calcRate:
+        return MaterialPageRoute(builder: (_) => const CalcRatePage());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

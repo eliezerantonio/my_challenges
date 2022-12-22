@@ -7,12 +7,13 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 35.0),
+      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 30.0),
       child: Drawer(
         elevation: 10.0,
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 height: 150,
@@ -32,76 +33,89 @@ class CustomDrawer extends StatelessWidget {
               const Divider(height: 0.1, indent: 5, endIndent: 5),
               ListTile(
                   onTap: () {},
-                  leading: const Icon(Icons.person),
-                  textColor: Colors.black,
+                  textColor: Colors.blue,
                   title: const Text(
-                    'JUROS SIMPLES',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    'CALCULADORAS DE JUROS SIMPLES',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 13.0),
                   )),
               ListTile(
+                leading: const Icon(Icons.person),
+                hoverColor: Colors.grey,
+                title: const Text('Cálculo de Juros Simples'),
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, simpleInterest);
+                  Navigator.pushReplacementNamed(context, calcSimpleInterest);
                 },
-                leading: const Icon(Icons.person),
-                hoverColor: Colors.grey,
-                title: const Text('Calcular Juros'),
               ),
               ListTile(
-                onTap: () {},
                 leading: const Icon(Icons.person),
                 hoverColor: Colors.grey,
-                title: const Text('Calcular Taxa'),
+                title: const Text('Cálculo de Taxa'),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, calcRate);
+                },
               ),
               ListTile(
-                onTap: () {},
                 leading: const Icon(Icons.person),
                 hoverColor: Colors.grey,
-                title: const Text('Calcular Tempo'),
+                title: const Text('Cálculo de Tempo'),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, calcTerm);
+                },
               ),
               ListTile(
-                onTap: () {},
                 leading: const Icon(Icons.person),
                 hoverColor: Colors.grey,
-                title: const Text('Calcular Capital'),
-              ),
-              ListTile(
-                onTap: () {},
-                leading: const Icon(Icons.person),
-                hoverColor: Colors.grey,
-                title: const Text('Calcular Montante Acumulado'),
+                title: const Text('Cálculo do Capital Acumulado'),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, calcPrincipal);
+                },
               ),
               const Divider(height: 0.1, indent: 5, endIndent: 5),
-              ListTile(
-                  onTap: () {},
-                  leading: const Icon(Icons.person),
-                  textColor: Colors.black,
-                  title: const Text(
-                    'JUROS COMPOSTO',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-              ListTile(
-                onTap: () {},
-                leading: const Icon(Icons.person),
-                hoverColor: Colors.grey,
-                title: const Text('Calcular Juro'),
-              ),
-              ListTile(
-                onTap: () {},
-                leading: const Icon(Icons.person),
-                hoverColor: Colors.grey,
-                title: const Text('Calcular Juro Total'),
-              ),
-              ListTile(
-                onTap: () {},
-                leading: const Icon(Icons.person),
-                hoverColor: Colors.grey,
-                title: const Text('Calcular Tempo'),
-              ),
-              ListTile(
-                onTap: () {},
-                leading: const Icon(Icons.person),
-                hoverColor: Colors.grey,
-                title: const Text('Calcular Montante Acumulado'),
+              Column(
+                children: [
+                  ListTile(
+                      onTap: () {},
+                      textColor: Colors.blue,
+                      title: const Text(
+                        'CALCULADORAS DE JUROS COMPOSTOS',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 13.0),
+                      )),
+                  ListTile(
+                    leading: const Icon(Icons.person),
+                    hoverColor: Colors.grey,
+                    title: const Text('Cálculo de Juros Composto'),
+                    onTap: () {
+                      Navigator.pushReplacementNamed(
+                          context, calcSimpleInterest);
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.person),
+                    hoverColor: Colors.grey,
+                    title: const Text('Cálculo de Juro Total'),
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, calcRate);
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.person),
+                    hoverColor: Colors.grey,
+                    title: const Text('Cálculo Juros'),
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, calcTerm);
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.person),
+                    hoverColor: Colors.grey,
+                    title: const Text('Cálculo de Taxa'),
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, calcPrincipal);
+                    },
+                  ),
+                ],
               ),
             ],
           ),
