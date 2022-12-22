@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_contabil_v2/widget/custom_drawer.dart';
 
 class SimpleInterest extends StatefulWidget {
   const SimpleInterest({
@@ -10,12 +11,15 @@ class SimpleInterest extends StatefulWidget {
 }
 
 class _SimpleInterestState extends State<SimpleInterest> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController timeController = TextEditingController();
   TextEditingController capitalController = TextEditingController();
   TextEditingController taxController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: const CustomDrawer(),
       backgroundColor: const Color.fromARGB(255, 250, 250, 250),
       body: SafeArea(
         child: Align(
@@ -47,12 +51,13 @@ class _SimpleInterestState extends State<SimpleInterest> {
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Icon(
-                              Icons.close,
-                              color: Colors.black,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.menu, color: Colors.black),
+                              onPressed: () {
+                                _scaffoldKey.currentState!.openDrawer();
+                              },
                             ),
-                            //CircleAvatar(backgroundColor: Colors.red)
                           ],
                         ),
                         const SizedBox(height: 10.0),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mini_contabil_v2/simple_interest.dart';
+import 'package:mini_contabil_v2/consts.dart';
+import 'package:mini_contabil_v2/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  SimpleInterest(),
+      initialRoute: homeRoute,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

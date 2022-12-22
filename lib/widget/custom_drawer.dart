@@ -28,7 +28,7 @@ class CustomDrawer extends StatelessWidget {
             const Divider(),
             ListTile(
               onTap: () {
-                Navigator.pushNamed(context, simpleInterest);
+                Navigator.pushReplacementNamed(context, homeRoute);
               },
               leading: const Icon(Icons.person),
               hoverColor: Colors.grey,
