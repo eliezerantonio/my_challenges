@@ -73,7 +73,9 @@ class _CenterCardState extends State<CenterCard> {
   final TextEditingController capitalController = TextEditingController();
   final TextEditingController rateController = TextEditingController();
   final TextEditingController termController = TextEditingController();
-
+  double netPayableAmount = 0;
+  double totalOfInvestment = 0;
+  double rateToConvert = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -192,18 +194,60 @@ class _CenterCardState extends State<CenterCard> {
                 const SizedBox(height: 15.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    LeftTitle(text: 'Juros Calculado (j):'),
+                  children: [
+                    const LeftTitle(text: 'Juros Calculado (j):'),
                     Text(
-                      '1.000,00 AOA',
-                      style: TextStyle(
+                      netPayableAmount.toString(),
+                      style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
                 const Divider(thickness: 2, indent: 5, endIndent: 5),
                 const SizedBox(height: 10),
-                const ButtonRow(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          double principal =
+                              double.parse(capitalController.text);
+                          double rate = double.parse(rateController.text);
+                          double term = double.parse(termController.text);
+                          rateToConvert = rate / 100;
+                          netPayableAmount = principal * rateToConvert * term;
+                          totalOfInvestment = principal + netPayableAmount;
+                        });
+                      },
+                      child: CalculateButton(
+                        text: 'Calcular',
+                        colors: [
+                          Colors.blue.shade300,
+                          Colors.blue.shade400,
+                          Colors.blue.shade500,
+                        ],
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          capitalController.text = '100';
+                          rateController.text = '0';
+                          termController.text = '0';
+                        });
+                      },
+                      child: CalculateButton(
+                        text: 'Limpar',
+                        colors: [
+                          Colors.red.shade300,
+                          Colors.red.shade400,
+                          Colors.red.shade500,
+                        ],
+                      ),
+                    )
+                  ],
+                ),
                 const SizedBox(height: 10),
               ],
             ),
@@ -215,29 +259,32 @@ class _CenterCardState extends State<CenterCard> {
                 const ResolutionInfo(info: 'Formula:', data: 'c * i * n'),
                 const Divider(),
                 const SizedBox(height: 15.0),
-                const ResolutionInfo(info: 'j:', data: '1000,00 * 5% * 2'),
-                const Divider(),
-                const SizedBox(height: 15.0),
                 ResolutionInfo(
                     info: 'j:',
                     data:
                         '${capitalController.text} * ${rateController.text} * ${termController.text}'),
                 const Divider(),
                 const SizedBox(height: 15.0),
-                const ResolutionInfo(info: 'j:', data: '40,00 AOA'),
+                ResolutionInfo(
+                    info: 'j:',
+                    data:
+                        '${capitalController.text} * $rateToConvert * ${termController.text}'),
+                const Divider(),
+                const SizedBox(height: 15.0),
+                ResolutionInfo(info: 'j:', data: '$netPayableAmount  AOA'),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Valor Total Final (j+c):',
                       style: TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '1.040,00 AOA',
-                      style: TextStyle(
+                      '$totalOfInvestment  AOA',
+                      style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -251,7 +298,7 @@ class _CenterCardState extends State<CenterCard> {
     );
   }
 
-  double _calSimpleInterest(String newValue) {
+  double _calSimpleInterest() {
     String result;
     double principal = double.parse(capitalController.text);
     double rate = double.parse(rateController.text);
@@ -261,43 +308,5 @@ class _CenterCardState extends State<CenterCard> {
     netPayableAmount = principal * (principal * rate * term) / 100;
 
     return netPayableAmount;
-  }
-}
-
-class ButtonRow extends StatelessWidget {
-  const ButtonRow({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        CalculateButton(
-          text: 'Calcular',
-          colors: [
-            Colors.blue.shade300,
-            Colors.blue.shade400,
-            Colors.blue.shade500,
-          ],
-          onPressed: () {
-            print('object');
-          },
-        ),
-        CalculateButton(
-          text: 'Limpar',
-          colors: [
-            Colors.red.shade300,
-            Colors.red.shade400,
-            Colors.red.shade500,
-          ],
-          onPressed: () {
-            print('object');
-          },
-        )
-      ],
-    ));
   }
 }
