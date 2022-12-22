@@ -203,34 +203,7 @@ class _CenterCardState extends State<CenterCard> {
                 ),
                 const Divider(thickness: 2, indent: 5, endIndent: 5),
                 const SizedBox(height: 10),
-                Center(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CalculateButton(
-                      text: 'Calcular',
-                      colors: [
-                        Colors.blue.shade300,
-                        Colors.blue.shade400,
-                        Colors.blue.shade500,
-                      ],
-                      onPressed: () {
-                        print('object');
-                      },
-                    ),
-                    CalculateButton(
-                      text: 'Limpar',
-                      colors: [
-                        Colors.red.shade300,
-                        Colors.red.shade400,
-                        Colors.red.shade500,
-                      ],
-                      onPressed: () {
-                        print('object');
-                      },
-                    )
-                  ],
-                )),
+                const ButtonRow(),
                 const SizedBox(height: 10),
               ],
             ),
@@ -288,5 +261,43 @@ class _CenterCardState extends State<CenterCard> {
     netPayableAmount = principal * (principal * rate * term) / 100;
 
     return netPayableAmount;
+  }
+}
+
+class ButtonRow extends StatelessWidget {
+  const ButtonRow({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        CalculateButton(
+          text: 'Calcular',
+          colors: [
+            Colors.blue.shade300,
+            Colors.blue.shade400,
+            Colors.blue.shade500,
+          ],
+          onPressed: () {
+            print('object');
+          },
+        ),
+        CalculateButton(
+          text: 'Limpar',
+          colors: [
+            Colors.red.shade300,
+            Colors.red.shade400,
+            Colors.red.shade500,
+          ],
+          onPressed: () {
+            print('object');
+          },
+        )
+      ],
+    ));
   }
 }
