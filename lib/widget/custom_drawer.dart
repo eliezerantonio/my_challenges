@@ -18,6 +18,17 @@ class CustomDrawer extends StatelessWidget {
               color: Colors.red,
             ),
             ListTile(
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, homeRoute);
+                },
+                leading: const Icon(Icons.home_filled),
+                textColor: Colors.black,
+                title: const Text(
+                  'INÍCIO',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                )),
+            const Divider(height: 0.1, indent: 5, endIndent: 5),
+            ListTile(
                 onTap: () {},
                 leading: const Icon(Icons.person),
                 textColor: Colors.black,
@@ -25,10 +36,9 @@ class CustomDrawer extends StatelessWidget {
                   'JUROS SIMPLES',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 )),
-            const Divider(),
             ListTile(
               onTap: () {
-                Navigator.pushReplacementNamed(context, homeRoute);
+                Navigator.pushReplacementNamed(context, simpleInterest);
               },
               leading: const Icon(Icons.person),
               hoverColor: Colors.grey,
@@ -58,12 +68,15 @@ class CustomDrawer extends StatelessWidget {
               hoverColor: Colors.grey,
               title: const Text('Calcular Montante Acumulado'),
             ),
+            const Divider(height: 0.1, indent: 5, endIndent: 5),
             ListTile(
                 onTap: () {},
                 leading: const Icon(Icons.person),
                 textColor: Colors.black,
-                title: const Text('Juros Composto')),
-            const Divider(),
+                title: const Text(
+                  'JUROS COMPOSTO',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                )),
             ListTile(
               onTap: () {},
               leading: const Icon(Icons.person),
@@ -80,13 +93,13 @@ class CustomDrawer extends StatelessWidget {
               onTap: () {},
               leading: const Icon(Icons.person),
               hoverColor: Colors.grey,
-              title: const Text('Calcular Montante Acumulado'),
+              title: const Text('Calcular Tempo'),
             ),
             ListTile(
               onTap: () {},
               leading: const Icon(Icons.person),
               hoverColor: Colors.grey,
-              title: const Text('Calcular Tempo'),
+              title: const Text('Calcular Montante Acumulado'),
             ),
           ],
         ),

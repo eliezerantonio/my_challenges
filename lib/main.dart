@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+       backgroundColor: const Color.fromARGB(255, 250, 250, 250),
         primarySwatch: Colors.blue,
       ),
       initialRoute: homeRoute,
