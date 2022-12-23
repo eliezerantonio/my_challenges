@@ -61,10 +61,9 @@ class CustomDrawer extends StatelessWidget {
                   ),
                 ),
                 const Divider(height: 0.1, indent: 5, endIndent: 5),
-                ListTile(
-                    onTap: () {},
+                const ListTile(
                     textColor: Colors.blue,
-                    title: const Text(
+                    title: Text(
                       'JUROS SIMPLES',
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 13.0),
@@ -73,20 +72,24 @@ class CustomDrawer extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Column(
                     children: [
-                      CustomListTile(
-                        text: 'Juros Simples',
-                        icon: const Icon(Icons.account_balance_wallet_outlined,
-                            color: Colors.blue),
+                      GestureDetector(
                         onTap: () => Navigator.pushReplacementNamed(
                             context, calcSimpleInterest),
+                        child: const CustomListTile(
+                          text: 'Juros Simples',
+                          icon: Icon(Icons.account_balance_wallet_outlined,
+                              color: Colors.blue),
+                        ),
                       ),
                       const SizedBox(height: 10.0),
-                      CustomListTile(
-                        text: 'Juros Prota',
-                        icon: const Icon(Icons.account_balance_wallet_rounded,
-                            color: Colors.blue),
+                      GestureDetector(
                         onTap: () => Navigator.pushReplacementNamed(
                             context, calcSimpleInterest),
+                        child: const CustomListTile(
+                          text: 'Juros Prota',
+                          icon: Icon(Icons.account_balance_wallet_rounded,
+                              color: Colors.blue),
+                        ),
                       ),
                     ],
                   ),
@@ -104,20 +107,24 @@ class CustomDrawer extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Column(
                     children: [
-                      CustomListTile(
-                        text: 'Juros Composto',
-                        icon: const Icon(Icons.account_balance_wallet_outlined,
-                            color: Colors.blue),
+                      GestureDetector(
                         onTap: () => Navigator.pushReplacementNamed(
                             context, calcSimpleInterest),
+                        child: const CustomListTile(
+                          text: 'Juros Composto',
+                          icon: Icon(Icons.account_balance_wallet_outlined,
+                              color: Colors.blue),
+                        ),
                       ),
                       const SizedBox(height: 10.0),
-                      CustomListTile(
-                        text: 'Juros Pro Rata',
-                        icon: const Icon(Icons.account_balance_wallet_rounded,
-                            color: Colors.blue),
+                      GestureDetector(
                         onTap: () => Navigator.pushReplacementNamed(
                             context, calcSimpleInterest),
+                        child: const CustomListTile(
+                          text: 'Juros Pro Rata',
+                          icon: Icon(Icons.account_balance_wallet_rounded,
+                              color: Colors.blue),
+                        ),
                       ),
                     ],
                   ),
@@ -134,33 +141,40 @@ class CustomDrawer extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Column(
                     children: [
-                      CustomListTile(
-                        text: 'IRT',
-                        icon: const Icon(Icons.calculate, color: Colors.blue),
+                      GestureDetector(
                         onTap: () => Navigator.pushReplacementNamed(
                             context, calcSimpleInterest),
+                        child: const CustomListTile(
+                          text: 'IRT',
+                          icon: Icon(Icons.calculate, color: Colors.blue),
+                        ),
                       ),
                       const SizedBox(height: 10.0),
-                      CustomListTile(
-                        text: 'INSS',
-                        icon: const Icon(Icons.calculate, color: Colors.blue),
+                      GestureDetector(
                         onTap: () => Navigator.pushReplacementNamed(
                             context, calcSimpleInterest),
+                        child: const CustomListTile(
+                          text: 'INSS',
+                          icon: Icon(Icons.calculate, color: Colors.blue),
+                        ),
                       ),
                       const SizedBox(height: 10.0),
-                      CustomListTile(
-                        text: 'IBAN',
-                        icon: const Icon(Icons.account_balance,
-                            color: Colors.blue),
+                      GestureDetector(
                         onTap: () => Navigator.pushReplacementNamed(
                             context, calcSimpleInterest),
+                        child: const CustomListTile(
+                          text: 'IBAN',
+                          icon: Icon(Icons.account_balance, color: Colors.blue),
+                        ),
                       ),
                       const SizedBox(height: 20.0),
-                      CustomListTile(
-                        text: 'Sobre',
-                        icon: const Icon(Icons.info, color: Colors.orange),
+                      GestureDetector(
                         onTap: () => Navigator.pushReplacementNamed(
                             context, calcSimpleInterest),
+                        child: const CustomListTile(
+                          text: 'Sobre',
+                          icon: Icon(Icons.info, color: Colors.orange),
+                        ),
                       ),
                       const SizedBox(height: 10.0),
                       const Center(

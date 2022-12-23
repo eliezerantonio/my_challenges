@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pattern_formatter/pattern_formatter.dart';
 
-class CapitalTextField extends StatefulWidget {
-  const CapitalTextField({
+class GeneralTextField extends StatefulWidget {
+  const GeneralTextField({
     Key? key,
     required this.controller,
     required this.hintText,
@@ -10,10 +10,10 @@ class CapitalTextField extends StatefulWidget {
   final TextEditingController? controller;
   final String hintText;
   @override
-  State<CapitalTextField> createState() => _CapitalTextFieldState();
+  State<GeneralTextField> createState() => _GeneralTextFieldState();
 }
 
-class _CapitalTextFieldState extends State<CapitalTextField> {
+class _GeneralTextFieldState extends State<GeneralTextField> {
   String capitalText = '';
 
   @override

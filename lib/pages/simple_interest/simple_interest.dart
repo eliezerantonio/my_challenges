@@ -4,7 +4,7 @@ import 'package:mini_contabil_v2/pages/simple_interest/widgets/resolution_info.d
 
 import '../drawer_widget/custom_drawer.dart';
 import '../widgets/calc_button.dart';
-import '../widgets/general_textField.dart';
+import '../widgets/general_text_field.dart';
 import 'widgets/left_title.dart';
 import 'widgets/resolution_tag.dart';
 
@@ -131,7 +131,7 @@ class _CenterCardState extends State<CenterCard> {
                     const SizedBox(height: 15.0),
                     const LeftTitle(text: 'Capital Inicial (c):'),
                     const SizedBox(height: 20.0),
-                    CapitalTextField(
+                    GeneralTextField(
                         controller: capitalController, hintText: '1,000.00'),
                   ],
                 ),
@@ -145,7 +145,7 @@ class _CenterCardState extends State<CenterCard> {
                       children: [
                         const LeftTitle(text: 'Taxa de Juros % (i):'),
                         const SizedBox(height: 20.0),
-                        CapitalTextField(
+                       GeneralTextField(
                           controller: rateController,
                           hintText: '5',
                         ),
@@ -179,7 +179,7 @@ class _CenterCardState extends State<CenterCard> {
                       children: [
                         const LeftTitle(text: 'Tempo (n):'),
                         const SizedBox(height: 20.0),
-                        CapitalTextField(
+                       GeneralTextField(
                             controller: termController, hintText: '2'),
                         SizedBox(
                           width: 85,
