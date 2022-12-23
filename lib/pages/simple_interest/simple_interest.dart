@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:mini_contabil_v2/pages/simple_interest/widgets/resolution_info.dart';
 
+import '../../utils/format_number_currency.dart';
 import '../drawer_widget/custom_drawer.dart';
 import '../widgets/calc_button.dart';
 import '../widgets/general_text_field.dart';
@@ -74,6 +75,7 @@ class _CenterCardState extends State<CenterCard> {
   final TextEditingController capitalController = TextEditingController();
   final TextEditingController rateController = TextEditingController();
   final TextEditingController termController = TextEditingController();
+  final FormatDoubleToCurrency amountToConvert = FormatDoubleToCurrency();
   double convertedRate = 0;
   double totalOfInvestment = 0;
   double rateToConvert = 0;
@@ -116,7 +118,7 @@ class _CenterCardState extends State<CenterCard> {
                       style: TextStyle(
                           fontSize: 17.0,
                           color: Colors.blue,
-                           fontFamily: 'Poppins',
+                          fontFamily: 'Poppins',
                           fontWeight: FontWeight.bold)),
                 ),
               ],
@@ -215,7 +217,7 @@ class _CenterCardState extends State<CenterCard> {
                   children: [
                     const LeftTitle(text: 'Juro Calculado (j):'),
                     Text(
-                      convertedRate.toStringAsFixed(2),
+                      amountToConvert.convertDouble(convertedRate).toString(),
                       style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
@@ -310,17 +312,18 @@ class _CenterCardState extends State<CenterCard> {
                 ResolutionInfo(
                     info: 'j:',
                     data:
-                        '${capitalController.text} * ${rateController.text} * ${termController.text}'),
+                        '${amountToConvert.convertDouble(double.parse(capitalController.text))} * ${rateController.text} * ${termController.text}'),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 ResolutionInfo(
                     info: 'j:',
                     data:
-                        '${capitalController.text} * $rateToConvert * ${termController.text}'),
+                        '${amountToConvert.convertDouble(double.parse(capitalController.text))} * $rateToConvert * ${termController.text}'),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 ResolutionInfo(
-                    info: 'j:', data: convertedRate.toStringAsFixed(2)),
+                    info: 'j:',
+                    data: amountToConvert.convertDouble(convertedRate)),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 Row(
@@ -332,7 +335,7 @@ class _CenterCardState extends State<CenterCard> {
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '${totalOfInvestment.toStringAsFixed(2)}  AOA',
+                      '${amountToConvert.convertDouble(totalOfInvestment)}  AOA',
                       style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),

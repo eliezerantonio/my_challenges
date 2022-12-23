@@ -7,6 +7,12 @@ class TaxIncomeCalculator {
     return inssPayable;
   }
 
+  double calculateIncome(
+      double fixedTerm, double mc, double excess, double rate) {
+    double incomeRate = fixedTerm + (mc - excess) * rate;
+    return incomeRate;
+  }
+
   double calculateTax(double baseSalary) {
     double inssRate = 3 / 100;
     double inssPayable = 0;
@@ -33,8 +39,8 @@ class TaxIncomeCalculator {
     double parcelaFixa4 = 12500;
     //5 Escalao (De 200.001 a 300.000)
     double from5 = 200001;
-    double to5 = 350000;
-    double taxa5 = 19 / 100;
+    double to5 = 300000;
+    double taxa5 = 18 / 100;
     double excesso5 = 200000;
     double parcelaFixa5 = 31250;
     //INSS TAX
@@ -59,19 +65,11 @@ class TaxIncomeCalculator {
     }
     if (baseSalary >= from5 && baseSalary <= to5) {
       //INSS
-      double inss = baseSalary * 0.03;
+      double inss = baseSalary * inssRate;
       double mc = baseSalary - inss;
       double irt = parcelaFixa5 + (mc - excesso5) * taxa5;
-
       double finalIrt = baseSalary - inss - irt;
-      //Material Coletavel
-      //double materialColetavel = salary - inss;
-      //IRT
-      //double irt = parcelaFixa5 + (materialColetavel - excesso5) * 0.18;
-      //Result IRT
-      //double finalIrt = salary - inss - irt;
-      //Final Result
-      return irt;
+      return finalIrt;
     }
 
     return incomeToPay;

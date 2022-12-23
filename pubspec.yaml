@@ -41,6 +41,7 @@ dependencies:
   pattern_formatter: ^2.0.0
   shared_preferences: any
   provider: any
+  intl:
   
 
 dev_dependencies:

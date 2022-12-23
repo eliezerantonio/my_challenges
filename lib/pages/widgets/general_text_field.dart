@@ -14,7 +14,7 @@ class GeneralTextField extends StatefulWidget {
 
 class _GeneralTextFieldState extends State<GeneralTextField> {
   String capitalText = '';
-
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(

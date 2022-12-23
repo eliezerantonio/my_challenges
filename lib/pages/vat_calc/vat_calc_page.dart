@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:mini_contabil_v2/pages/simple_interest/widgets/resolution_info.dart';
 
+import '../../utils/format_number_currency.dart';
 import '../drawer_widget/custom_drawer.dart';
 import '../simple_interest/widgets/left_title.dart';
 import '../simple_interest/widgets/resolution_tag.dart';
@@ -16,6 +17,8 @@ class CalcVatPage extends StatefulWidget {
   @override
   State<CalcVatPage> createState() => _CalcVatPageState();
 }
+
+final FormatDoubleToCurrency amountToConvert = FormatDoubleToCurrency();
 
 class _CalcVatPageState extends State<CalcVatPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>(); //? To Controll Drawer
@@ -129,7 +132,7 @@ class _CenterCardState extends State<CenterCard> {
                   children: [
                     const LeftTitle(text: 'IVA:'),
                     Text(
-                      vatResult.toStringAsFixed(2),
+                      amountToConvert.convertDouble(vatResult),
                       style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
@@ -193,7 +196,8 @@ class _CenterCardState extends State<CenterCard> {
                 const SizedBox(height: 15.0),
                 ResolutionInfo(
                     info: 'IVA:',
-                    data: '${amountController.text} * $vatRateConverted '),
+                    data:
+                        '${amountToConvert.convertDouble(double.parse(amountController.text))} * $vatRateConverted '),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 Row(
@@ -205,7 +209,7 @@ class _CenterCardState extends State<CenterCard> {
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '${vatPlusAmount.toStringAsFixed(2)}  AOA',
+                      '${amountToConvert.convertDouble(vatPlusAmount)}  AOA',
                       style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
