@@ -38,6 +38,9 @@ dependencies:
   flutter_animator: any
   animated_text_kit: any
   animate_do: ^3.0.2
+  pattern_formatter: ^2.0.0
+ 
+  
 
 dev_dependencies:
   flutter_test:

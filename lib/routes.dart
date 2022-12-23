@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_contabil_v2/consts.dart';
 import 'package:mini_contabil_v2/home_page.dart';
-import 'package:mini_contabil_v2/pages/calc_rate/calc_rate.dart';
+import 'package:mini_contabil_v2/pages/calc_rate/calc_pro_rata.dart';
 import 'package:mini_contabil_v2/pages/simple_interest/simple_interest.dart';
 
 class RouteGenerator {

@@ -125,7 +125,10 @@ class _CenterCardState extends State<CenterCard> {
                     const SizedBox(height: 15.0),
                     const LeftTitle(text: 'Capital Inicial (c):'),
                     const SizedBox(height: 20.0),
-                    CapitalTextField(controller: capitalController),
+                    CapitalTextField(
+                      controller: capitalController,
+                      hintText: '1,000.00',
+                    ),
                   ],
                 ),
                 const Divider(),
@@ -138,7 +141,10 @@ class _CenterCardState extends State<CenterCard> {
                       children: [
                         const LeftTitle(text: 'Taxa de Juros % (i):'),
                         const SizedBox(height: 20.0),
-                        CapitalTextField(controller: rateController),
+                        CapitalTextField(
+                          controller: rateController,
+                          hintText: '5',
+                        ),
                         SizedBox(
                           width: 85,
                           height: 40,
@@ -169,7 +175,8 @@ class _CenterCardState extends State<CenterCard> {
                       children: [
                         const LeftTitle(text: 'Tempo (n):'),
                         const SizedBox(height: 20.0),
-                        CapitalTextField(controller: termController),
+                        CapitalTextField(
+                            controller: termController, hintText: '2'),
                         SizedBox(
                           width: 85,
                           height: 40,
