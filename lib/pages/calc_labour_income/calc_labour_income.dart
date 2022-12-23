@@ -214,8 +214,7 @@ class _CenterCardState extends State<CenterCard> {
                 const SizedBox(height: 15.0),
                 ResolutionInfo(
                     info: 'IVA:',
-                    data:
-                        '${amountToConvert.convertDouble(double.parse(amountController.text))} * $labourIncomePayable '),
+                    data: '${amountController.text} * $labourIncomePayable '),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 Row(

@@ -312,13 +312,13 @@ class _CenterCardState extends State<CenterCard> {
                 ResolutionInfo(
                     info: 'j:',
                     data:
-                        '${amountToConvert.convertDouble(double.parse(capitalController.text))} * ${rateController.text} * ${termController.text}'),
+                        '${capitalController.text} * ${rateController.text} * ${termController.text}'),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 ResolutionInfo(
                     info: 'j:',
                     data:
-                        '${amountToConvert.convertDouble(double.parse(capitalController.text))} * $rateToConvert * ${termController.text}'),
+                        '${capitalController.text} * $rateToConvert * ${termController.text}'),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 ResolutionInfo(

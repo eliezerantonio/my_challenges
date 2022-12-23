@@ -172,7 +172,7 @@ class CustomDrawer extends StatelessWidget {
                           onTap: () => Navigator.pushReplacementNamed(
                               context, calcInssPage),
                           child: const CustomListTile(
-                            text: 'INSS',
+                            text: 'IRT E INSS',
                             icon: Icon(Icons.calculate, color: Colors.blue),
                           ),
                         ),
