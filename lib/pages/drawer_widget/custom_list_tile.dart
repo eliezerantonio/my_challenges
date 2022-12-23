@@ -20,7 +20,8 @@ class CustomListTile extends StatelessWidget {
           Text(
             text,
             style: const TextStyle(
-              fontWeight: FontWeight.w900,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Inter',
               color: Colors.black54,
             ),
           ),

@@ -116,6 +116,7 @@ class _CenterCardState extends State<CenterCard> {
                       style: TextStyle(
                           fontSize: 17.0,
                           color: Colors.blue,
+                          fontFamily: 'Poppins',
                           fontWeight: FontWeight.bold)),
                 ),
               ],
@@ -145,7 +146,7 @@ class _CenterCardState extends State<CenterCard> {
                       children: [
                         const LeftTitle(text: 'Taxa de Juros % (i):'),
                         const SizedBox(height: 20.0),
-                       GeneralTextField(
+                        GeneralTextField(
                           controller: rateController,
                           hintText: '5',
                         ),
@@ -179,7 +180,7 @@ class _CenterCardState extends State<CenterCard> {
                       children: [
                         const LeftTitle(text: 'Tempo (n):'),
                         const SizedBox(height: 20.0),
-                       GeneralTextField(
+                        GeneralTextField(
                             controller: termController, hintText: '2'),
                         SizedBox(
                           width: 85,

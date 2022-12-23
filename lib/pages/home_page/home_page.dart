@@ -98,8 +98,9 @@ class _HomePageState extends State<HomePage> {
                       'Mini-Contabil',
                       style: TextStyle(
                           color: Colors.white,
+                          fontFamily: 'Poppins',
                           fontWeight: FontWeight.bold,
-                          fontSize: 15.0),
+                          fontSize: 20.0),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -109,6 +110,7 @@ class _HomePageState extends State<HomePage> {
                       style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
+                          fontFamily: 'Inter',
                           fontSize: 15.0),
                       child: AnimatedTextKit(
                           isRepeatingAnimation: true,

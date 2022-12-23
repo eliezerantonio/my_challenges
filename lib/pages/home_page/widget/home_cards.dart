@@ -11,8 +11,6 @@ class HomePageCards extends StatefulWidget {
 }
 
 class _HomePageCardsState extends State<HomePageCards> {
- 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,7 +45,8 @@ class _HomePageCardsState extends State<HomePageCards> {
                         'Juros Simples (No Tempo)',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontFamily: 'Poppins',
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -59,6 +58,7 @@ class _HomePageCardsState extends State<HomePageCards> {
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                           color: Color.fromARGB(255, 226, 226, 226),
+                          fontFamily: 'Inter',
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),

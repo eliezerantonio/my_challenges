@@ -10,6 +10,6 @@ class ResolutionTag extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(text,
         style: const TextStyle(
-            fontSize: 17.0, fontWeight: FontWeight.bold, color: Colors.blue));
+            fontSize: 17.0, fontWeight: FontWeight.bold, color: Colors.blue, fontFamily: 'Poppins',));
   }
 }

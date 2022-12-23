@@ -10,7 +10,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 30.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.0),
         child: Drawer(
@@ -23,13 +23,16 @@ class CustomDrawer extends StatelessWidget {
                   height: 40,
                   width: double.infinity,
                   color: Colors.blue,
-                  child: const Center(
-                    child: Text(
-                      'Mini - Contabil',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold),
+                  child: Center(
+                    child: BounceInUp(
+                      child: const Text(
+                        'Mini - Contabil',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Poppins',
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),
@@ -52,6 +55,7 @@ class CustomDrawer extends StatelessWidget {
                             'Inicio',
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
+                              fontFamily: 'Poppins',
                               color: Colors.black54,
                             ),
                           ),
@@ -66,7 +70,10 @@ class CustomDrawer extends StatelessWidget {
                     title: Text(
                       'JUROS SIMPLES',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 13.0),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0,
+                        fontFamily: 'Poppins',
+                      ),
                     )),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -101,7 +108,10 @@ class CustomDrawer extends StatelessWidget {
                     title: const Text(
                       'JUROS COMPOSTO',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 13.0),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0,
+                        fontFamily: 'Poppins',
+                      ),
                     )),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -129,13 +139,17 @@ class CustomDrawer extends StatelessWidget {
                     ],
                   ),
                 ),
+                const Divider(height: 0.1, indent: 5, endIndent: 5),
                 ListTile(
                     onTap: () {},
                     textColor: Colors.blue,
                     title: const Text(
-                      'OUTRAS',
+                      'OUTRAS CALCULADORAS',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 13.0),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0,
+                        fontFamily: 'Poppins',
+                      ),
                     )),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -167,7 +181,43 @@ class CustomDrawer extends StatelessWidget {
                           icon: Icon(Icons.account_balance, color: Colors.blue),
                         ),
                       ),
-                      const SizedBox(height: 20.0),
+                      const Divider(height: 0.1, indent: 5, endIndent: 5),
+                    ],
+                  ),
+                ),
+                ListTile(
+                    onTap: () {},
+                    textColor: Colors.blue,
+                    title: const Text(
+                      'MAIS OPÇÕES',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0,
+                        fontFamily: 'Poppins',
+                      ),
+                    )),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () => Navigator.pushReplacementNamed(
+                            context, calcSimpleInterest),
+                        child: const CustomListTile(
+                          text: 'Português',
+                          icon: Icon(Icons.language, color: Colors.orange),
+                        ),
+                      ),
+                      const SizedBox(height: 5.0),
+                      GestureDetector(
+                        onTap: () => Navigator.pushReplacementNamed(
+                            context, calcSimpleInterest),
+                        child: const CustomListTile(
+                          text: 'Light Mode',
+                          icon: Icon(Icons.light_mode, color: Colors.orange),
+                        ),
+                      ),
+                      const SizedBox(height: 5.0),
                       GestureDetector(
                         onTap: () => Navigator.pushReplacementNamed(
                             context, calcSimpleInterest),
@@ -176,13 +226,12 @@ class CustomDrawer extends StatelessWidget {
                           icon: Icon(Icons.info, color: Colors.orange),
                         ),
                       ),
-                      const SizedBox(height: 10.0),
-                      const Center(
-                        child: Text('version: 2.0'),
-                      )
                     ],
                   ),
                 ),
+                const Center(
+                  child: Text('version: 2.0'),
+                )
               ],
             ),
           ),
