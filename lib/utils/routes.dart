@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mini_contabil_v2/utils/consts.dart';
 import 'package:mini_contabil_v2/pages/home_page/home_page.dart';
-import 'package:mini_contabil_v2/pages/calc_rate/calc_pro_rata.dart';
 import 'package:mini_contabil_v2/pages/simple_interest/simple_interest.dart';
+import 'package:mini_contabil_v2/pages/vat_calc/vat_calc_page.dart';
+import 'package:mini_contabil_v2/pages/widgets/custom_dialog.dart';
+import 'package:mini_contabil_v2/utils/consts.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,8 +13,10 @@ class RouteGenerator {
       case calcSimpleInterest:
         return MaterialPageRoute(
             builder: (_) => const CalcSimpleInterestPage());
-      case calcRatePage:
-        return MaterialPageRoute(builder: (_) => const CalcProRataPage());
+      case calcVatPage:
+        return MaterialPageRoute(builder: (_) => const CalcVatPage());
+      case dialogBoxPage:
+        return MaterialPageRoute(builder: (_) => const CustomDialogBox());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

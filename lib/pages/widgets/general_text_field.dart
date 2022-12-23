@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pattern_formatter/pattern_formatter.dart';
 
 class GeneralTextField extends StatefulWidget {
   const GeneralTextField({
@@ -22,7 +21,7 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
       width: 110,
       height: 20,
       child: TextField(
-        inputFormatters: [ThousandsFormatter()],
+       
         toolbarOptions:
             const ToolbarOptions(copy: true, paste: false, selectAll: true),
         cursorWidth: 0.5,

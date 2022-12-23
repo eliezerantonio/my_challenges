@@ -16,11 +16,11 @@ class CustomListTile extends StatelessWidget {
       child: Row(
         children: [
           icon,
-          const SizedBox(width: 10.0),
+          const SizedBox(width: 15.0),
           Text(
             text,
             style: const TextStyle(
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w900,
               fontFamily: 'Inter',
               color: Colors.black54,
             ),

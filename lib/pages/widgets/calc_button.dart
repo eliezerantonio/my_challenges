@@ -13,7 +13,6 @@ class CalculateButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 30,
-      
       width: 120,
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: colors),

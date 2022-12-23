@@ -3,21 +3,21 @@ import 'package:flutter_animator/flutter_animator.dart';
 import 'package:mini_contabil_v2/pages/simple_interest/widgets/resolution_info.dart';
 
 import '../drawer_widget/custom_drawer.dart';
+import '../simple_interest/widgets/left_title.dart';
+import '../simple_interest/widgets/resolution_tag.dart';
 import '../widgets/calc_button.dart';
 import '../widgets/general_text_field.dart';
-import 'widgets/left_title.dart';
-import 'widgets/resolution_tag.dart';
 
-class CalcSimpleInterestPage extends StatefulWidget {
-  const CalcSimpleInterestPage({
+class CalcVatPage extends StatefulWidget {
+  const CalcVatPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<CalcSimpleInterestPage> createState() => _CalcSimpleInterestPageState();
+  State<CalcVatPage> createState() => _CalcVatPageState();
 }
 
-class _CalcSimpleInterestPageState extends State<CalcSimpleInterestPage> {
+class _CalcVatPageState extends State<CalcVatPage> {
   //Global Variables
   final _scaffoldKey = GlobalKey<ScaffoldState>(); //? To Controll Drawer
   final TextEditingController timeController = TextEditingController();
@@ -116,7 +116,6 @@ class _CenterCardState extends State<CenterCard> {
                       style: TextStyle(
                           fontSize: 17.0,
                           color: Colors.blue,
-                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.bold)),
                 ),
               ],

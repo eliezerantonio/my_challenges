@@ -39,7 +39,8 @@ dependencies:
   animated_text_kit: any
   animate_do: ^3.0.2
   pattern_formatter: ^2.0.0
- 
+  shared_preferences: any
+  provider: any
   
 
 dev_dependencies:

@@ -5,13 +5,8 @@ import '../../utils/consts.dart';
 class CustomDialogBox extends StatefulWidget {
   const CustomDialogBox({
     Key? key,
-    required this.title,
-    required this.descriptions,
-    required this.text,
-    required this.img,
   }) : super(key: key);
-  final String title, descriptions, text;
-  final Image img;
+
   @override
   _CustomDialogBoxState createState() => _CustomDialogBoxState();
 }
@@ -21,10 +16,10 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(dialogPadding),
+        borderRadius: BorderRadius.circular(10),
       ),
       elevation: 0,
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color.fromARGB(0, 255, 44, 44),
       child: contentBox(context),
     );
   }
@@ -34,62 +29,91 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
       children: <Widget>[
         Container(
           padding: const EdgeInsets.only(
-              left: dialogPadding,
-              top: avatarRadius + dialogPadding,
-              right: dialogPadding,
-              bottom: dialogPadding),
+              left: 10, top: avatarRadius + dialogPadding, right: 10),
           margin: const EdgeInsets.only(top: avatarRadius),
           decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               color: Colors.white,
               borderRadius: BorderRadius.circular(dialogPadding),
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
-                    color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
+                    color: Colors.black.withOpacity(0.5),
+                    offset: const Offset(0, 10),
+                    blurRadius: 10),
               ]),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text(
-                widget.title,
-                style:
-                    const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+              const Text(
+                'MINI-CONTÁBIL',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontFamily: 'Poppins',
+                  color: Colors.blue,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               const SizedBox(
                 height: 15,
               ),
-              Text(
-                widget.descriptions,
-                style: const TextStyle(fontSize: 14),
-                textAlign: TextAlign.center,
+              const Text(
+                'Este aplicativo foi criado por Adilson Tchameia, para fins educaionais sem propósito financeiro.',
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'Inter',
+                ),
               ),
-              const SizedBox(
-                height: 22,
+              const SizedBox(height: 10),
+              const Text(
+                'Criado Por: Adilson Tchameia',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.bold),
               ),
+              const SizedBox(height: 10),
+              const Text(
+                'Email: adilsonkchameia@outlook.com',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Revisão: Fernando Franklin Cavalo (Contabilista/Auditor)',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 5),
               Align(
                 alignment: Alignment.bottomRight,
-                child: FlatButton(
+                child: TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text(
-                      widget.text,
-                      style: const TextStyle(fontSize: 18),
+                    child: const Text(
+                      'Sair',
+                      style: TextStyle(fontSize: 18),
                     )),
               ),
             ],
           ),
         ),
-        Positioned(
+        const Positioned(
           left: dialogPadding,
           right: dialogPadding,
-          child: CircleAvatar(
-            backgroundColor: Colors.transparent,
-            radius: avatarRadius,
-            child: ClipRRect(
-                borderRadius:
-                    const BorderRadius.all(Radius.circular(avatarRadius)),
-                child: Image.asset("assetsbackground2.jpg")),
+          child: SizedBox(
+            height: 90.0,
+            child: CircleAvatar(
+              backgroundColor: Colors.red,
+              radius: 90.0,
+              backgroundImage: AssetImage('assets/background2.jpg'),
+            ),
           ),
         ),
       ],

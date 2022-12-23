@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color.fromARGB(255, 75, 74, 74),
         key: _scaffoldKey,
         drawer: const CustomDrawer(),
         body: Stack(children: [
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                   controller: pageController,
                   itemCount: 5,
                   itemBuilder: ((context, index) {
-                    const card = HomePageCards();
+                    final card = buildHomeCard();
                     if (currentIndex == index) {
                       return LeftRightShake(child: card);
                     } else {

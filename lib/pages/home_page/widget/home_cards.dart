@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 
-class HomePageCards extends StatefulWidget {
-  const HomePageCards({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<HomePageCards> createState() => _HomePageCardsState();
-}
-
-class _HomePageCardsState extends State<HomePageCards> {
-  @override
-  Widget build(BuildContext context) {
+Widget buildHomeCard() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -74,4 +63,3 @@ class _HomePageCardsState extends State<HomePageCards> {
       ),
     );
   }
-}
