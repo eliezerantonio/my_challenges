@@ -10,18 +10,18 @@ import '../simple_interest/widgets/resolution_tag.dart';
 import '../widgets/calc_button.dart';
 import '../widgets/general_text_field.dart';
 
-class LabourIncomePage extends StatefulWidget {
-  const LabourIncomePage({
+class CalcNibPage extends StatefulWidget {
+  const CalcNibPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<LabourIncomePage> createState() => _LabourIncomePageState();
+  State<CalcNibPage> createState() => _CalcNibPageState();
 }
 
 final FormatDoubleToCurrency amountToConvert = FormatDoubleToCurrency();
 
-class _LabourIncomePageState extends State<LabourIncomePage> {
+class _CalcNibPageState extends State<CalcNibPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>(); //? To Controll Drawer
 
   @override

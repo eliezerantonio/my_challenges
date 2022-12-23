@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_contabil_v2/pages/calc_labour_income/calc_labour_income.dart';
 import 'package:mini_contabil_v2/pages/home_page/home_page.dart';
+import 'package:mini_contabil_v2/pages/nib_validator/ao_nib_validator.dart';
 import 'package:mini_contabil_v2/pages/simple_interest/simple_interest.dart';
 import 'package:mini_contabil_v2/pages/vat_calc/vat_calc_page.dart';
 import 'package:mini_contabil_v2/pages/widgets/custom_dialog.dart';
@@ -16,6 +17,8 @@ class RouteGenerator {
             builder: (_) => const CalcSimpleInterestPage());
       case calcVatPage:
         return MaterialPageRoute(builder: (_) => const CalcVatPage());
+      case calcNibPage:
+        return MaterialPageRoute(builder: (_) => const CalcNibPage());
       case calcInssPage:
         return MaterialPageRoute(builder: (_) => const LabourIncomePage());
       case dialogBoxPage:

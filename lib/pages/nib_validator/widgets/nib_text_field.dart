@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class GeneralTextField extends StatefulWidget {
-  const GeneralTextField({
+class NibTextField extends StatefulWidget {
+  const NibTextField({
     Key? key,
     required this.controller,
     required this.hintText,
@@ -9,10 +9,10 @@ class GeneralTextField extends StatefulWidget {
   final TextEditingController? controller;
   final String hintText;
   @override
-  State<GeneralTextField> createState() => _GeneralTextFieldState();
+  State<NibTextField> createState() => _NibTextFieldState();
 }
 
-class _GeneralTextFieldState extends State<GeneralTextField> {
+class _NibTextFieldState extends State<NibTextField> {
   String capitalText = '';
 
   @override
@@ -21,8 +21,6 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
       width: 110,
       height: 20,
       child: TextField(
-        toolbarOptions:
-            const ToolbarOptions(copy: true, paste: false, selectAll: true),
         cursorWidth: 0.5,
         onChanged: (value) => setState(() {
           capitalText = value;

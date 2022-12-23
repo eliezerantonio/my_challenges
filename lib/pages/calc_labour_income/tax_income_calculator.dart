@@ -7,20 +7,15 @@ class TaxIncomeCalculator {
     return inssPayable;
   }
 
-  double calculateIncome(
-      double fixedTerm, double mc, double excess, double rate) {
-    double incomeRate = fixedTerm + (mc - excess) * rate;
-    return incomeRate;
-  }
-
+  //Income Result
+  double irtResult = 0;
   double calculateTax(double baseSalary) {
     //INSS Variables
     double inssRate = 3 / 100;
     double inssCalculated = 0;
     //BASE For Income Calculus
     double baseCalculus = 0;
-    //Income Result
-    double irtResult = 0;
+
     //Salary Afte Descount
     double totalSalary = 0;
     //1 Escalao - no info
@@ -134,7 +129,7 @@ class TaxIncomeCalculator {
       //INSS
       inssCalculated = baseSalary * inssRate;
       //
-      baseCalculus = baseSalary - inssCalculated;
+      baseCalculus = baseSalary + 0 - (inssCalculated);
       //
       irtResult = fixedParcel5 + (baseCalculus - excess5) * tax5;
       //
@@ -230,6 +225,10 @@ class TaxIncomeCalculator {
       return totalSalary;
     }
 
-    return baseSalary;
+    return irtResult;
+  }
+
+  double calculateIncome() {
+    return irtResult;
   }
 }

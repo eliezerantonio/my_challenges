@@ -179,7 +179,7 @@ class CustomDrawer extends StatelessWidget {
                         const SizedBox(height: 10.0),
                         GestureDetector(
                           onTap: () => Navigator.pushReplacementNamed(
-                              context, calcSimpleInterest),
+                              context, calcNibPage),
                           child: const CustomListTile(
                             text: 'IBAN',
                             icon:
