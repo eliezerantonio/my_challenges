@@ -3,6 +3,7 @@ import 'package:mini_contabil_v2/utils/consts.dart';
 import 'package:mini_contabil_v2/utils/routes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
