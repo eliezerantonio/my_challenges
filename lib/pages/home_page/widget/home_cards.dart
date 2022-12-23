@@ -11,7 +11,7 @@ class HomePageCards extends StatefulWidget {
 }
 
 class _HomePageCardsState extends State<HomePageCards> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+ 
 
   @override
   Widget build(BuildContext context) {
