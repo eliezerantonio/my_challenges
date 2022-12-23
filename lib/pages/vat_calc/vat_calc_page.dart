@@ -18,11 +18,7 @@ class CalcVatPage extends StatefulWidget {
 }
 
 class _CalcVatPageState extends State<CalcVatPage> {
-  //Global Variables
   final _scaffoldKey = GlobalKey<ScaffoldState>(); //? To Controll Drawer
-  final TextEditingController timeController = TextEditingController();
-  final TextEditingController capitalController = TextEditingController();
-  final TextEditingController taxController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,22 +59,11 @@ class CenterCard extends StatefulWidget {
 }
 
 class _CenterCardState extends State<CenterCard> {
-  // Initial Selected Value
-  String initialRate = 'Anual';
-  String initialTerm = 'Anual';
-  // List of items in dropdown menu
-  final _periods = [
-    'Anual',
-    'Mensal',
-  ];
-  final TextEditingController capitalController = TextEditingController();
-  final TextEditingController rateController = TextEditingController();
-  final TextEditingController termController = TextEditingController();
-  double convertedRate = 0;
-  double totalOfInvestment = 0;
-  double rateToConvert = 0;
-  double principalAcomulated = 0;
-
+  final TextEditingController amountController = TextEditingController();
+  double vatRate = 14;
+  double vatResult = 0;
+  double vatRateConverted = 0;
+  double vatPlusAmount = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -112,7 +97,7 @@ class _CenterCardState extends State<CenterCard> {
                   ),
                 ),
                 BounceInRight(
-                  child: const Text('Juros Simples e Composto',
+                  child: const Text('Cálculadora de IVA',
                       style: TextStyle(
                           fontSize: 17.0,
                           color: Colors.blue,
@@ -127,12 +112,13 @@ class _CenterCardState extends State<CenterCard> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BounceInLeft(child: const ResolutionTag(text: 'Dados')),
+                    BounceInLeft(
+                        child: const ResolutionTag(text: 'Valor a Calcular')),
                     const SizedBox(height: 15.0),
-                    const LeftTitle(text: 'Capital Inicial (c):'),
+                    const LeftTitle(text: 'Valor:'),
                     const SizedBox(height: 20.0),
                     GeneralTextField(
-                        controller: capitalController, hintText: '1,000.00'),
+                        controller: amountController, hintText: '1,000.00'),
                   ],
                 ),
                 const Divider(),
@@ -140,81 +126,9 @@ class _CenterCardState extends State<CenterCard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const LeftTitle(text: 'Taxa de Juros % (i):'),
-                        const SizedBox(height: 20.0),
-                        GeneralTextField(
-                          controller: rateController,
-                          hintText: '5',
-                        ),
-                        SizedBox(
-                          width: 85,
-                          height: 40,
-                          child: DropdownButton(
-                            value: initialRate,
-                            items: _periods.map((String items) {
-                              return DropdownMenuItem(
-                                value: items,
-                                child: Text(
-                                  items,
-                                  style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                initialRate = newValue!;
-                              });
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const LeftTitle(text: 'Tempo (n):'),
-                        const SizedBox(height: 20.0),
-                        GeneralTextField(
-                            controller: termController, hintText: '2'),
-                        SizedBox(
-                          width: 85,
-                          height: 40,
-                          child: DropdownButton(
-                            value: initialTerm,
-                            items: _periods.map((String items) {
-                              return DropdownMenuItem(
-                                value: items,
-                                child: Text(
-                                  items,
-                                  style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                initialTerm = newValue!;
-                              });
-                            },
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 15.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const LeftTitle(text: 'Juro Calculado (j):'),
+                    const LeftTitle(text: 'IVA:'),
                     Text(
-                      convertedRate.toStringAsFixed(2),
+                      vatResult.toStringAsFixed(2),
                       style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
@@ -228,34 +142,10 @@ class _CenterCardState extends State<CenterCard> {
                     InkWell(
                       onTap: () {
                         setState(() {
-                          double principal =
-                              double.parse(capitalController.text);
-                          double rate = double.parse(rateController.text);
-                          double term = double.parse(termController.text);
-
-                          if (initialRate == 'Mensal' &&
-                              initialTerm == 'Mensal') {
-                            rateToConvert = rate / 100;
-                            convertedRate = principal * rateToConvert * term;
-
-                            totalOfInvestment = principal + convertedRate;
-                          } else if (initialRate != 'Mensal' &&
-                              initialTerm == 'Mensal') {
-                            rateToConvert = rate / 100;
-                            convertedRate =
-                                (principal * rateToConvert * term) / 12;
-                            totalOfInvestment = principal + convertedRate;
-                          } else if (initialRate == 'Mensal' &&
-                              initialTerm != 'Mensal') {
-                            rateToConvert = rate / 100;
-                            convertedRate =
-                                principal * rateToConvert * term * 12;
-                            totalOfInvestment = principal + convertedRate;
-                          } else {
-                            rateToConvert = rate / 100;
-                            convertedRate = principal * rateToConvert * term;
-                            totalOfInvestment = principal + convertedRate;
-                          }
+                          double amount = double.parse(amountController.text);
+                          vatRateConverted = vatRate / 100;
+                          vatResult = amount * vatRateConverted;
+                          vatPlusAmount = amount + vatResult;
                         });
                       },
                       child: BounceInLeft(
@@ -273,13 +163,7 @@ class _CenterCardState extends State<CenterCard> {
                       onTap: () {
                         setState(() {
                           //Restore Controller To Default
-                          capitalController.text = '0';
-                          rateController.text = '0';
-                          termController.text = '0';
-                          //Restore Default Values
-                          convertedRate = 0.00;
-                          rateToConvert = 0;
-                          totalOfInvestment = 0.00;
+                          amountController.text = '0';
                         });
                       },
                       child: BounceInRight(
@@ -303,35 +187,24 @@ class _CenterCardState extends State<CenterCard> {
               children: [
                 BounceInLeft(child: const ResolutionTag(text: 'Resolução')),
                 const SizedBox(height: 15.0),
-                const ResolutionInfo(info: 'Formula:', data: 'c * i * n'),
+                const ResolutionInfo(info: 'Formula:', data: 'Valor * 14%'),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 ResolutionInfo(
-                    info: 'j:',
-                    data:
-                        '${capitalController.text} * ${rateController.text} * ${termController.text}'),
-                const Divider(),
-                const SizedBox(height: 15.0),
-                ResolutionInfo(
-                    info: 'j:',
-                    data:
-                        '${capitalController.text} * $rateToConvert * ${termController.text}'),
-                const Divider(),
-                const SizedBox(height: 15.0),
-                ResolutionInfo(
-                    info: 'j:', data: convertedRate.toStringAsFixed(2)),
+                    info: 'IVA:',
+                    data: '${amountController.text} * $vatRateConverted '),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      'Capital Acumulado (j+c):',
+                      'Total a Receber/Pagar:',
                       style: TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '${totalOfInvestment.toStringAsFixed(2)}  AOA',
+                      '${vatPlusAmount.toStringAsFixed(2)}  AOA',
                       style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
