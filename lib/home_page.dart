@@ -55,23 +55,53 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.menu, color: Colors.white),
-                  onPressed: () {
-                    _scaffoldKey.currentState!.openDrawer();
-                  },
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 40.0, vertical: 15.0),
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: InkWell(
+                onTap: () {
+                  _scaffoldKey.currentState!.openDrawer();
+                },
+                child: Container(
+                  height: 40.0,
+                  width: 40.0,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: const Icon(
+                    Icons.menu,
+                    color: Color.fromARGB(255, 50, 50, 50),
+                  ),
                 ),
-                const Center(
-                    child: Text(
-                  'Mini-Contabil v2',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                )),
-              ],
+              ),
+            ),
+          ),
+          SafeArea(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 35.0, horizontal: 35.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    'Mini-Contabil',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0),
+                  ),
+                  SizedBox(height: 10.0),
+                  Text(
+                    'O Seu Cantinho Contabilistico...',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0),
+                  ),
+                ],
+              ),
             ),
           ),
         ]));

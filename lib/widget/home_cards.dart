@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
-class HomePageCards extends StatelessWidget {
+class HomePageCards extends StatefulWidget {
   const HomePageCards({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<HomePageCards> createState() => _HomePageCardsState();
+}
+
+class _HomePageCardsState extends State<HomePageCards> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +40,8 @@ class HomePageCards extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       'Juros Simples (No Tempo)',
                       style: TextStyle(
                         color: Colors.white,
@@ -42,8 +49,8 @@ class HomePageCards extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 10.0),
-                    const Text(
+                    SizedBox(height: 10.0),
+                    Text(
                       'O juro simples é uma taxa previamente definida e que incide somente sobre o valor inicial.',
                       textAlign: TextAlign.justify,
                       style: TextStyle(
@@ -52,30 +59,7 @@ class HomePageCards extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 15.0),
-                    Center(
-                      child: GestureDetector(
-                        onTap: () => print('tapped'),
-                        child: Container(
-                          height: 40,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: const Center(
-                            child: Text(
-                              'Calcular',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    SizedBox(height: 55.0),
                   ],
                 ),
               )

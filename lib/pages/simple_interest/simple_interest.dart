@@ -66,7 +66,10 @@ class _CenterCardState extends State<CenterCard> {
   String initialRate = 'Anual';
   String initialTerm = 'Anual';
   // List of items in dropdown menu
-  final _periods = ['Anual', 'Mensal', 'Nenhuma'];
+  final _periods = [
+    'Anual',
+    'Mensal',
+  ];
   final TextEditingController capitalController = TextEditingController();
   final TextEditingController rateController = TextEditingController();
   final TextEditingController termController = TextEditingController();
@@ -107,7 +110,7 @@ class _CenterCardState extends State<CenterCard> {
                     widget._scaffoldKey.currentState!.openDrawer();
                   },
                 ),
-                const Text('Regime de Juros Simples',
+                const Text('Juros Simples e Composto',
                     style: TextStyle(
                         fontSize: 17.0,
                         color: Colors.blue,
@@ -143,7 +146,6 @@ class _CenterCardState extends State<CenterCard> {
                           width: 85,
                           height: 40,
                           child: DropdownButton(
-                            isExpanded: true,
                             value: initialRate,
                             items: _periods.map((String items) {
                               return DropdownMenuItem(
@@ -175,7 +177,6 @@ class _CenterCardState extends State<CenterCard> {
                           width: 85,
                           height: 40,
                           child: DropdownButton(
-                            isExpanded: true,
                             value: initialTerm,
                             items: _periods.map((String items) {
                               return DropdownMenuItem(
@@ -241,18 +242,11 @@ class _CenterCardState extends State<CenterCard> {
                             convertedRate =
                                 principal * rateToConvert * term * 12;
                             totalOfInvestment = principal + convertedRate;
-                          } else if (initialRate == 'Nenhuma' &&
-                                  initialTerm == 'Mensal' ||
-                              initialTerm == 'Anual') {
-                            rateToConvert = rate / 100;
-                            convertedRate = principal * rateToConvert * term;
-                            totalOfInvestment = principal + convertedRate;
                           } else {
                             rateToConvert = rate / 100;
                             convertedRate = principal * rateToConvert * term;
                             totalOfInvestment = principal + convertedRate;
                           }
-
                           //Rate Calculus
                           finalRate = convertedRate / (principal * term);
                           //Term Calculus
@@ -300,7 +294,7 @@ class _CenterCardState extends State<CenterCard> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const ResolutionTag(text: 'Resolução'),
+                const ResolutionTag(text: 'Resolução Em Juros Simples'),
                 const SizedBox(height: 15.0),
                 const ResolutionInfo(info: 'Formula:', data: 'c * i * n'),
                 const Divider(),
@@ -345,7 +339,7 @@ class _CenterCardState extends State<CenterCard> {
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '$finalRate  AOA',
+                      '$totalOfInvestment  AOA',
                       style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
