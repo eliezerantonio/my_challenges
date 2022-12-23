@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mini_contabil_v2/consts.dart';
-import 'package:mini_contabil_v2/routes.dart';
+import 'package:mini_contabil_v2/utils/consts.dart';
+import 'package:mini_contabil_v2/utils/routes.dart';
 
 void main() {
   runApp(const MyApp());

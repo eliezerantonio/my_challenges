@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/flutter_animator.dart';
 import 'package:mini_contabil_v2/pages/simple_interest/widgets/resolution_info.dart';
-import 'package:mini_contabil_v2/widget/custom_drawer.dart';
 
-import '../simple_interest/widgets/calc_button.dart';
-import '../simple_interest/widgets/capital_textField.dart';
+
+import '../calc_s_interest/widgets/calc_button.dart';
+import '../drawer_widget/custom_drawer.dart';
+import '../widgets/general_textField.dart';
 import '../simple_interest/widgets/left_title.dart';
 import '../simple_interest/widgets/resolution_tag.dart';
 
-class CalcRatePage extends StatefulWidget {
-  const CalcRatePage({
+class CalcProRataPage extends StatefulWidget {
+  const CalcProRataPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<CalcRatePage> createState() => _CalcRatePageState();
+  State<CalcProRataPage> createState() => _CalcProRataPageState();
 }
 
-class _CalcRatePageState extends State<CalcRatePage> {
+class _CalcProRataPageState extends State<CalcProRataPage> {
   //Global Variables
   final _scaffoldKey = GlobalKey<ScaffoldState>(); //? To Controll Drawer
-  TextEditingController timeController = TextEditingController();
-  TextEditingController capitalController = TextEditingController();
-  TextEditingController taxController = TextEditingController();
+  final TextEditingController timeController = TextEditingController();
+  final TextEditingController capitalController = TextEditingController();
+  final TextEditingController taxController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +75,11 @@ class _CenterCardState extends State<CenterCard> {
   final TextEditingController capitalController = TextEditingController();
   final TextEditingController rateController = TextEditingController();
   final TextEditingController termController = TextEditingController();
-  double netPayableAmount = 0;
+  double convertedRate = 0;
   double totalOfInvestment = 0;
   double rateToConvert = 0;
   double principalAcomulated = 0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -101,17 +104,21 @@ class _CenterCardState extends State<CenterCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  icon: const Icon(Icons.menu, color: Colors.black),
-                  onPressed: () {
-                    widget._scaffoldKey.currentState!.openDrawer();
-                  },
+                BounceInLeft(
+                  child: IconButton(
+                    icon: const Icon(Icons.menu, color: Colors.black),
+                    onPressed: () {
+                      widget._scaffoldKey.currentState!.openDrawer();
+                    },
+                  ),
                 ),
-                const Text('Taxa em Juros Simples',
-                    style: TextStyle(
-                        fontSize: 17.0,
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold)),
+                BounceInRight(
+                  child: const Text('Juros Simples e Composto',
+                      style: TextStyle(
+                          fontSize: 17.0,
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold)),
+                ),
               ],
             ),
             const SizedBox(height: 10.0),
@@ -121,14 +128,12 @@ class _CenterCardState extends State<CenterCard> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const ResolutionTag(text: 'Dados'),
+                    BounceInLeft(child: const ResolutionTag(text: 'Dados')),
                     const SizedBox(height: 15.0),
                     const LeftTitle(text: 'Capital Inicial (c):'),
                     const SizedBox(height: 20.0),
                     CapitalTextField(
-                      controller: capitalController,
-                      hintText: '1,000.00',
-                    ),
+                        controller: capitalController, hintText: '1,000.00'),
                   ],
                 ),
                 const Divider(),
@@ -208,9 +213,9 @@ class _CenterCardState extends State<CenterCard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const LeftTitle(text: 'Juros Calculado (j):'),
+                    const LeftTitle(text: 'Juro Calculado (j):'),
                     Text(
-                      netPayableAmount.toString(),
+                      convertedRate.toStringAsFixed(2),
                       style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
@@ -228,37 +233,41 @@ class _CenterCardState extends State<CenterCard> {
                               double.parse(capitalController.text);
                           double rate = double.parse(rateController.text);
                           double term = double.parse(termController.text);
+
                           if (initialRate == 'Mensal' &&
                               initialTerm == 'Mensal') {
                             rateToConvert = rate / 100;
-                            netPayableAmount = principal * rateToConvert * term;
-                            totalOfInvestment = principal + netPayableAmount;
+                            convertedRate = principal * rateToConvert * term;
+
+                            totalOfInvestment = principal + convertedRate;
                           } else if (initialRate != 'Mensal' &&
                               initialTerm == 'Mensal') {
                             rateToConvert = rate / 100;
-                            netPayableAmount =
+                            convertedRate =
                                 (principal * rateToConvert * term) / 12;
-                            totalOfInvestment = principal + netPayableAmount;
+                            totalOfInvestment = principal + convertedRate;
                           } else if (initialRate == 'Mensal' &&
                               initialTerm != 'Mensal') {
                             rateToConvert = rate / 100;
-                            netPayableAmount =
+                            convertedRate =
                                 principal * rateToConvert * term * 12;
-                            totalOfInvestment = principal + netPayableAmount;
+                            totalOfInvestment = principal + convertedRate;
                           } else {
                             rateToConvert = rate / 100;
-                            netPayableAmount = principal * rateToConvert * term;
-                            totalOfInvestment = principal + netPayableAmount;
+                            convertedRate = principal * rateToConvert * term;
+                            totalOfInvestment = principal + convertedRate;
                           }
                         });
                       },
-                      child: CalculateButton(
-                        text: 'Calcular',
-                        colors: [
-                          Colors.blue.shade300,
-                          Colors.blue.shade400,
-                          Colors.blue.shade500,
-                        ],
+                      child: BounceInLeft(
+                        child: CalculateButton(
+                          text: 'Calcular',
+                          colors: [
+                            Colors.blue.shade300,
+                            Colors.blue.shade400,
+                            Colors.blue.shade500,
+                          ],
+                        ),
                       ),
                     ),
                     InkWell(
@@ -269,18 +278,20 @@ class _CenterCardState extends State<CenterCard> {
                           rateController.text = '0';
                           termController.text = '0';
                           //Restore Default Values
-                          netPayableAmount = 0.00;
+                          convertedRate = 0.00;
                           rateToConvert = 0;
                           totalOfInvestment = 0.00;
                         });
                       },
-                      child: CalculateButton(
-                        text: 'Limpar',
-                        colors: [
-                          Colors.red.shade300,
-                          Colors.red.shade400,
-                          Colors.red.shade500,
-                        ],
+                      child: BounceInRight(
+                        child: CalculateButton(
+                          text: 'Limpar',
+                          colors: [
+                            Colors.red.shade300,
+                            Colors.red.shade400,
+                            Colors.red.shade500,
+                          ],
+                        ),
                       ),
                     )
                   ],
@@ -291,7 +302,7 @@ class _CenterCardState extends State<CenterCard> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const ResolutionTag(text: 'Resolução'),
+                BounceInLeft(child: const ResolutionTag(text: 'Resolução')),
                 const SizedBox(height: 15.0),
                 const ResolutionInfo(info: 'Formula:', data: 'c * i * n'),
                 const Divider(),
@@ -308,25 +319,25 @@ class _CenterCardState extends State<CenterCard> {
                         '${capitalController.text} * $rateToConvert * ${termController.text}'),
                 const Divider(),
                 const SizedBox(height: 15.0),
-                ResolutionInfo(info: 'j:', data: '$netPayableAmount  AOA'),
+                ResolutionInfo(
+                    info: 'j:', data: convertedRate.toStringAsFixed(2)),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      'Valor Total Final (j+c):',
+                      'Capital Acumulado (j+c):',
                       style: TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '$totalOfInvestment  AOA',
+                      '${totalOfInvestment.toStringAsFixed(2)}  AOA',
                       style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
-                const Divider(indent: 5, endIndent: 5),
               ],
             ),
           ],

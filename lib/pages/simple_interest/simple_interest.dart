@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:mini_contabil_v2/pages/simple_interest/widgets/resolution_info.dart';
-import 'package:mini_contabil_v2/widget/custom_drawer.dart';
 
-import 'widgets/calc_button.dart';
-import 'widgets/capital_textField.dart';
+import '../drawer_widget/custom_drawer.dart';
+import '../widgets/calc_button.dart';
+import '../widgets/general_textField.dart';
 import 'widgets/left_title.dart';
 import 'widgets/resolution_tag.dart';
 

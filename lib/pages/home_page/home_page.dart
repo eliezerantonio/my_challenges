@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
-import 'package:mini_contabil_v2/widget/custom_drawer.dart';
-import 'package:mini_contabil_v2/widget/home_cards.dart';
+import 'package:mini_contabil_v2/pages/drawer_widget/custom_drawer.dart';
+import 'package:mini_contabil_v2/pages/home_page/widget/home_cards.dart';
 import 'package:rive/rive.dart';
 
-import 'animations/custom_shake.dart';
+import '../../animations/custom_shake.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
