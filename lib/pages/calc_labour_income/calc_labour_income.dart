@@ -206,15 +206,19 @@ class _CenterCardState extends State<CenterCard> {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 BounceInLeft(child: const ResolutionTag(text: 'Resolução')),
                 const SizedBox(height: 15.0),
-                const ResolutionInfo(info: 'Formula:', data: 'Valor * 14%'),
-                const Divider(),
-                const SizedBox(height: 15.0),
-                ResolutionInfo(
-                    info: 'IVA:',
-                    data: '${amountController.text} * $labourIncomePayable '),
+                const ResolutionInfo(
+                    info: 'S. Social (INSS):', data: 'Salário Base * 3%'),
+                const SizedBox(height: 10.0),
+                const ResolutionInfo(
+                    info: 'Matéria Coletável:',
+                    data: 'Salário Base + 0 - INSS'),
+                const SizedBox(height: 10.0),
+                const ResolutionInfo(
+                    info: 'IRT:', data: 'Parcela Fixa + (MC - Excesso) - Taxa'),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 Row(

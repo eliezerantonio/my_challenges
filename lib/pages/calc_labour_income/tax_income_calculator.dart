@@ -127,7 +127,7 @@ class TaxIncomeCalculator {
       //
       irtResult = fixedParcel4 + (baseCalculus - excess4) * tax4;
       //
-      totalSalary = baseSalary - inssCalculated - irtResult;
+      totalSalary = baseSalary - irtResult - inssCalculated;
       return totalSalary;
     }
     if (baseSalary >= fromAmount5 && baseSalary <= toAmount5) {
@@ -138,10 +138,10 @@ class TaxIncomeCalculator {
       //
       irtResult = fixedParcel5 + (baseCalculus - excess5) * tax5;
       //
-      totalSalary = baseSalary - inssCalculated - irtResult;
+      totalSalary = baseSalary - irtResult - inssCalculated;
       return totalSalary;
     }
-    if (baseSalary >= fromAmount5 && baseSalary <= toAmount6) {
+    if (baseSalary >= fromAmount6 && baseSalary <= toAmount6) {
       //INSS
       inssCalculated = baseSalary * inssRate;
       //
@@ -180,7 +180,7 @@ class TaxIncomeCalculator {
       //
       baseCalculus = baseSalary - inssCalculated;
       //
-      irtResult = fixedParcel9 + (baseCalculus - excess5) * tax9;
+      irtResult = fixedParcel9 + (baseCalculus - excess9) * tax9;
       //
       totalSalary = baseSalary - inssCalculated - irtResult;
       return totalSalary;
