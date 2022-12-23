@@ -11,7 +11,9 @@ class ResolutionInfo extends StatelessWidget {
         Text(
           info,
           style: const TextStyle(
-              fontSize: 15.0, fontWeight: FontWeight.w600, color: Colors.grey),
+              fontSize: 15.0,
+              fontWeight: FontWeight.w600,
+              color: Color.fromARGB(255, 62, 62, 62)),
         ),
         const SizedBox(width: 10.0),
         Text(

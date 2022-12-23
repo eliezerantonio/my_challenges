@@ -8,7 +8,11 @@ class LeftTitle extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(
-          fontSize: 15.0, fontWeight: FontWeight.w600, color: Colors.grey, fontFamily: 'Inter',),
+        fontSize: 15.0,
+        fontWeight: FontWeight.w600,
+        color: Color.fromARGB(255, 62, 62, 62),
+        fontFamily: 'Inter',
+      ),
     );
   }
 }

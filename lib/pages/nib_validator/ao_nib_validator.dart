@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:mini_contabil_v2/pages/calc_labour_income/tax_income_calculator.dart';
+import 'package:mini_contabil_v2/pages/nib_validator/widgets/nib_text_field.dart';
 import 'package:mini_contabil_v2/pages/simple_interest/widgets/resolution_info.dart';
 
 import '../../utils/format_number_currency.dart';
@@ -8,7 +9,6 @@ import '../drawer_widget/custom_drawer.dart';
 import '../simple_interest/widgets/left_title.dart';
 import '../simple_interest/widgets/resolution_tag.dart';
 import '../widgets/calc_button.dart';
-import '../widgets/general_text_field.dart';
 
 class CalcNibPage extends StatefulWidget {
   const CalcNibPage({
@@ -63,7 +63,7 @@ class CenterCard extends StatefulWidget {
 }
 
 class _CenterCardState extends State<CenterCard> {
-  final TextEditingController amountController = TextEditingController();
+  final TextEditingController nibController = TextEditingController();
   TaxIncomeCalculator taxIncomeCalculator = TaxIncomeCalculator();
   double labourIncomeRate = 0;
   double inssRate = 3 / 100;
@@ -105,7 +105,7 @@ class _CenterCardState extends State<CenterCard> {
                   ),
                 ),
                 BounceInRight(
-                  child: const Text('Cálculadora de IRT e INSS',
+                  child: const Text('Validador de IBAN',
                       style: TextStyle(
                           fontSize: 17.0,
                           color: Colors.blue,
@@ -122,12 +122,11 @@ class _CenterCardState extends State<CenterCard> {
                   children: [
                     BounceInLeft(
                         child: const ResolutionTag(
-                            text: 'Imposto Sobre o Rendimento do Trabalho')),
+                            text: 'Insira um IBAN, e Descubra o Seu Banco.')),
                     const SizedBox(height: 15.0),
-                    const LeftTitle(text: 'Valor:'),
+                    const LeftTitle(text: 'IBAN:'),
                     const SizedBox(height: 20.0),
-                    GeneralTextField(
-                        controller: amountController, hintText: '1,000.00'),
+                    NibTextField(controller: nibController),
                   ],
                 ),
                 const Divider(),
@@ -135,7 +134,7 @@ class _CenterCardState extends State<CenterCard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const LeftTitle(text: 'IRT:'),
+                    const LeftTitle(text: 'BANCO:'),
                     Text(
                       amountToConvert.convertDouble(inssPayable),
                       style: const TextStyle(
@@ -147,7 +146,7 @@ class _CenterCardState extends State<CenterCard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const LeftTitle(text: 'INSS:'),
+                    const LeftTitle(text: 'NOME:'),
                     Text(
                       amountToConvert
                           .convertDouble(taxIncomeCalculator.irtResult),
@@ -164,11 +163,12 @@ class _CenterCardState extends State<CenterCard> {
                     InkWell(
                       onTap: () {
                         setState(() {
-                          double amount = double.parse(amountController.text);
+                          double nibToCalculate =
+                              double.parse(nibController.text);
                           salarioLiquido =
-                              taxIncomeCalculator.calculateTax(amount);
+                              taxIncomeCalculator.calculateTax(nibToCalculate);
                           inssPayable =
-                              taxIncomeCalculator.calculateInss(amount);
+                              taxIncomeCalculator.calculateInss(nibToCalculate);
                         });
                       },
                       child: BounceInLeft(
@@ -186,7 +186,7 @@ class _CenterCardState extends State<CenterCard> {
                       onTap: () {
                         setState(() {
                           //Restore Controller To Default
-                          amountController.text = '0';
+                          nibController.text = '0';
                         });
                       },
                       child: BounceInRight(
@@ -209,34 +209,18 @@ class _CenterCardState extends State<CenterCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BounceInLeft(child: const ResolutionTag(text: 'Resolução')),
+                BounceInLeft(
+                    child: const ResolutionTag(text: 'Como Funciona ?')),
                 const SizedBox(height: 15.0),
                 const ResolutionInfo(
-                    info: 'S. Social (INSS):', data: 'Salário Base * 3%'),
+                    info: 'Digitos de Controle:', data: 'AO66'),
+                const SizedBox(height: 10.0),
+                const ResolutionInfo(info: 'Código do Banco:', data: '0066'),
                 const SizedBox(height: 10.0),
                 const ResolutionInfo(
-                    info: 'Matéria Coletável:',
-                    data: 'Salário Base + 0 - INSS'),
-                const SizedBox(height: 10.0),
-                const ResolutionInfo(
-                    info: 'IRT:', data: 'Parcela Fixa + (MC - Excesso) - Taxa'),
+                    info: 'Os Demais, São De Rastreio', data: 'Rastreio.'),
                 const Divider(),
                 const SizedBox(height: 15.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Salário Liquido:',
-                      style: TextStyle(
-                          fontSize: 15.0, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      '${amountToConvert.convertDouble(salarioLiquido)}.   AOA',
-                      style: const TextStyle(
-                          fontSize: 15.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
               ],
             ),
           ],
