@@ -7,12 +7,12 @@ import 'package:mini_contabil_v2/pages/simple_interest/simple_interest.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case homeRoute:
+      case homePage:
         return MaterialPageRoute(builder: (_) => const HomePage());
       case calcSimpleInterest:
         return MaterialPageRoute(
             builder: (_) => const CalcSimpleInterestPage());
-      case calcRate:
+      case calcRatePage:
         return MaterialPageRoute(builder: (_) => const CalcRatePage());
       default:
         return MaterialPageRoute(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/flutter_animator.dart';
 import 'package:mini_contabil_v2/consts.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -32,26 +33,28 @@ class CustomDrawer extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, calcSimpleInterest);
+                    Navigator.pushReplacementNamed(context, homePage);
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10.0, vertical: 10.0),
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.cabin_rounded,
-                          color: Colors.blue,
-                        ),
-                        SizedBox(width: 10.0),
-                        Text(
-                          'Inicio',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            color: Colors.black54,
+                    child: FadeInUp(
+                      child: Row(
+                        children: const [
+                          Icon(
+                            Icons.cabin_rounded,
+                            color: Colors.blue,
                           ),
-                        ),
-                      ],
+                          SizedBox(width: 10.0),
+                          Text(
+                            'Inicio',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              color: Colors.black54,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -73,19 +76,21 @@ class CustomDrawer extends StatelessWidget {
                           Navigator.pushReplacementNamed(
                               context, calcSimpleInterest);
                         },
-                        child: Row(
-                          children: const [
-                            Icon(Icons.account_balance_wallet_outlined,
-                                color: Colors.blue),
-                            SizedBox(width: 10.0),
-                            Text(
-                              'Juros Simples',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black54,
+                        child: FadeInUp(
+                          child: Row(
+                            children: const [
+                              Icon(Icons.account_balance_wallet_outlined,
+                                  color: Colors.blue),
+                              SizedBox(width: 10.0),
+                              Text(
+                                'Juros Simples',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.black54,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10.0),
@@ -94,19 +99,21 @@ class CustomDrawer extends StatelessWidget {
                           Navigator.pushReplacementNamed(
                               context, calcSimpleInterest);
                         },
-                        child: Row(
-                          children: const [
-                            Icon(Icons.account_balance_wallet_rounded,
-                                color: Colors.blue),
-                            SizedBox(width: 10.0),
-                            Text(
-                              'Juros Pro Rata',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black54,
+                        child: FadeInUp(
+                          child: Row(
+                            children: const [
+                              Icon(Icons.account_balance_wallet_rounded,
+                                  color: Colors.blue),
+                              SizedBox(width: 10.0),
+                              Text(
+                                'Juros Pro Rata',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.black54,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -130,19 +137,21 @@ class CustomDrawer extends StatelessWidget {
                           Navigator.pushReplacementNamed(
                               context, calcSimpleInterest);
                         },
-                        child: Row(
-                          children: const [
-                            Icon(Icons.account_balance_wallet_outlined,
-                                color: Colors.blue),
-                            SizedBox(width: 10.0),
-                            Text(
-                              'Juros Composto',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black54,
+                        child: FadeInUp(
+                          child: Row(
+                            children: const [
+                              Icon(Icons.account_balance_wallet_outlined,
+                                  color: Colors.blue),
+                              SizedBox(width: 10.0),
+                              Text(
+                                'Juros Composto',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.black54,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10.0),
@@ -151,19 +160,21 @@ class CustomDrawer extends StatelessWidget {
                           Navigator.pushReplacementNamed(
                               context, calcSimpleInterest);
                         },
-                        child: Row(
-                          children: const [
-                            Icon(Icons.account_balance_wallet_rounded,
-                                color: Colors.blue),
-                            SizedBox(width: 10.0),
-                            Text(
-                              'Juros Pro Rata',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black54,
+                        child: FadeInUp(
+                          child: Row(
+                            children: const [
+                              Icon(Icons.account_balance_wallet_rounded,
+                                  color: Colors.blue),
+                              SizedBox(width: 10.0),
+                              Text(
+                                'Juros Pro Rata',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.black54,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -186,18 +197,20 @@ class CustomDrawer extends StatelessWidget {
                           Navigator.pushReplacementNamed(
                               context, calcSimpleInterest);
                         },
-                        child: Row(
-                          children: const [
-                            Icon(Icons.calculate, color: Colors.blue),
-                            SizedBox(width: 10.0),
-                            Text(
-                              'IRT',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black54,
+                        child: FadeInUp(
+                          child: Row(
+                            children: const [
+                              Icon(Icons.calculate, color: Colors.blue),
+                              SizedBox(width: 10.0),
+                              Text(
+                                'IRT',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.black54,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10.0),
@@ -206,18 +219,20 @@ class CustomDrawer extends StatelessWidget {
                           Navigator.pushReplacementNamed(
                               context, calcSimpleInterest);
                         },
-                        child: Row(
-                          children: const [
-                            Icon(Icons.calculate, color: Colors.blue),
-                            SizedBox(width: 10.0),
-                            Text(
-                              'INSS',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black54,
+                        child: FadeInUp(
+                          child: Row(
+                            children: const [
+                              Icon(Icons.calculate, color: Colors.blue),
+                              SizedBox(width: 10.0),
+                              Text(
+                                'INSS',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.black54,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10.0),
@@ -226,18 +241,20 @@ class CustomDrawer extends StatelessWidget {
                           Navigator.pushReplacementNamed(
                               context, calcSimpleInterest);
                         },
-                        child: Row(
-                          children: const [
-                            Icon(Icons.account_balance, color: Colors.blue),
-                            SizedBox(width: 10.0),
-                            Text(
-                              'VALIDADOR DE IBAN',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black54,
+                        child: FadeInUp(
+                          child: Row(
+                            children: const [
+                              Icon(Icons.account_balance, color: Colors.blue),
+                              SizedBox(width: 10.0),
+                              Text(
+                                'VALIDADOR DE IBAN',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.black54,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(height: 20.0),
@@ -246,18 +263,20 @@ class CustomDrawer extends StatelessWidget {
                           Navigator.pushReplacementNamed(
                               context, calcSimpleInterest);
                         },
-                        child: Row(
-                          children: const [
-                            Icon(Icons.info, color: Colors.blue),
-                            SizedBox(width: 10.0),
-                            Text(
-                              'SOBRE',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black54,
+                        child: FadeInUp(
+                          child: Row(
+                            children: const [
+                              Icon(Icons.info, color: Colors.blue),
+                              SizedBox(width: 10.0),
+                              Text(
+                                'SOBRE',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.black54,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10.0),

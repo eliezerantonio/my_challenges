@@ -36,7 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   rive: any
   flutter_animator: any
-  cached_network_image: any
+  animated_text_kit: any
+  animate_do: ^3.0.2
 
 dev_dependencies:
   flutter_test:

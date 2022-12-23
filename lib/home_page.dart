@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/flutter_animator.dart';
 import 'package:mini_contabil_v2/widget/custom_drawer.dart';
 import 'package:mini_contabil_v2/widget/home_cards.dart';
 import 'package:rive/rive.dart';
@@ -26,7 +28,9 @@ class _HomePageState extends State<HomePage> {
         drawer: const CustomDrawer(),
         body: Stack(children: [
           const RiveAnimation.asset('assets/homepage.riv'),
-          Image.asset('assets/background2.jpg'),
+          Image.asset(
+            'assets/background2.jpg',
+          ),
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
@@ -64,15 +68,19 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {
                   _scaffoldKey.currentState!.openDrawer();
                 },
-                child: Container(
-                  height: 40.0,
-                  width: 40.0,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: const Icon(
-                    Icons.menu,
-                    color: Color.fromARGB(255, 50, 50, 50),
+                child: Bounce(
+                  child: Container(
+                    height: 40.0,
+                    width: 40.0,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: Flash(
+                      child: const Icon(
+                        Icons.menu,
+                        color: Color.fromARGB(255, 50, 50, 50),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -84,21 +92,32 @@ class _HomePageState extends State<HomePage> {
                   const EdgeInsets.symmetric(vertical: 35.0, horizontal: 35.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'Mini-Contabil',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0),
+                children: [
+                  BounceInLeft(
+                    child: const Text(
+                      'Mini-Contabil',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0),
+                    ),
                   ),
-                  SizedBox(height: 10.0),
-                  Text(
-                    'O Seu Cantinho Contabilistico...',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0),
+                  const SizedBox(height: 10.0),
+                  SizedBox(
+                    width: 250,
+                    child: DefaultTextStyle(
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0),
+                      child: AnimatedTextKit(
+                          isRepeatingAnimation: true,
+                          totalRepeatCount: 5,
+                          animatedTexts: [
+                            TyperAnimatedText('O Seu Cantinho Contabilistico.',
+                                speed: const Duration(milliseconds: 100)),
+                          ]),
+                    ),
                   ),
                 ],
               ),

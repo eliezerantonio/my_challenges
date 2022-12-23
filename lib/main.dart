@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 250, 250, 250),
         primarySwatch: Colors.blue,
       ),
-      initialRoute: homeRoute,
+      initialRoute: homePage,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

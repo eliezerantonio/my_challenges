@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/flutter_animator.dart';
 
 class HomePageCards extends StatefulWidget {
   const HomePageCards({
@@ -40,26 +41,30 @@ class _HomePageCardsState extends State<HomePageCards> {
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Juros Simples (No Tempo)',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                  children: [
+                    BounceInUp(
+                      child: const Text(
+                        'Juros Simples (No Tempo)',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                    SizedBox(height: 10.0),
-                    Text(
-                      'O juro simples é uma taxa previamente definida e que incide somente sobre o valor inicial.',
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 226, 226, 226),
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                    const SizedBox(height: 10.0),
+                    BounceInUp(
+                      child: const Text(
+                        'O juro simples é uma taxa previamente definida e que incide somente sobre o valor inicial.',
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 226, 226, 226),
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                    SizedBox(height: 55.0),
+                    const SizedBox(height: 55.0),
                   ],
                 ),
               )
