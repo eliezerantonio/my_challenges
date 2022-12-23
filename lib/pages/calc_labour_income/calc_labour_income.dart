@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
+import 'package:mini_contabil_v2/pages/calc_labour_income/tax_income_calculator.dart';
 import 'package:mini_contabil_v2/pages/simple_interest/widgets/resolution_info.dart';
 
 import '../drawer_widget/custom_drawer.dart';
@@ -8,16 +9,16 @@ import '../simple_interest/widgets/resolution_tag.dart';
 import '../widgets/calc_button.dart';
 import '../widgets/general_text_field.dart';
 
-class CalcVatPage extends StatefulWidget {
-  const CalcVatPage({
+class LabourIncomePage extends StatefulWidget {
+  const LabourIncomePage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<CalcVatPage> createState() => _CalcVatPageState();
+  State<LabourIncomePage> createState() => _LabourIncomePageState();
 }
 
-class _CalcVatPageState extends State<CalcVatPage> {
+class _LabourIncomePageState extends State<LabourIncomePage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>(); //? To Controll Drawer
 
   @override
@@ -60,10 +61,14 @@ class CenterCard extends StatefulWidget {
 
 class _CenterCardState extends State<CenterCard> {
   final TextEditingController amountController = TextEditingController();
-  double vatRate = 14;
-  double vatResult = 0;
-  double vatRateConverted = 0;
-  double vatPlusAmount = 0;
+  TaxIncomeCalculator taxIncomeCalculator = TaxIncomeCalculator();
+  double labourIncomeRate = 0;
+  double inssRate = 3 / 100;
+  double inssToPay = 0;
+  double inssPayable = 0;
+  double labourIncomePayable = 0;
+  double salarioLiquido = 0;
+  double irtFinal = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -97,7 +102,7 @@ class _CenterCardState extends State<CenterCard> {
                   ),
                 ),
                 BounceInRight(
-                  child: const Text('Cálculadora de IVA',
+                  child: const Text('Cálculadora de IRT e INSS',
                       style: TextStyle(
                           fontSize: 17.0,
                           color: Colors.blue,
@@ -114,7 +119,7 @@ class _CenterCardState extends State<CenterCard> {
                   children: [
                     BounceInLeft(
                         child: const ResolutionTag(
-                            text: 'Imposto Sobre o Valor Acrescentado')),
+                            text: 'Imposto Sobre o Rendimento do Trabalho')),
                     const SizedBox(height: 15.0),
                     const LeftTitle(text: 'Valor:'),
                     const SizedBox(height: 20.0),
@@ -127,9 +132,21 @@ class _CenterCardState extends State<CenterCard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const LeftTitle(text: 'IVA:'),
+                    const LeftTitle(text: 'IRT:'),
                     Text(
-                      vatResult.toStringAsFixed(2),
+                      irtFinal.toStringAsFixed(2),
+                      style: const TextStyle(
+                          fontSize: 15.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const LeftTitle(text: 'INSS:'),
+                    Text(
+                      inssPayable.toStringAsFixed(2),
                       style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
@@ -144,9 +161,10 @@ class _CenterCardState extends State<CenterCard> {
                       onTap: () {
                         setState(() {
                           double amount = double.parse(amountController.text);
-                          vatRateConverted = vatRate / 100;
-                          vatResult = amount * vatRateConverted;
-                          vatPlusAmount = amount + vatResult;
+                          salarioLiquido =
+                              taxIncomeCalculator.calculateTax(amount);
+                          inssPayable =
+                              taxIncomeCalculator.calculateInss(amount);
                         });
                       },
                       child: BounceInLeft(
@@ -193,19 +211,19 @@ class _CenterCardState extends State<CenterCard> {
                 const SizedBox(height: 15.0),
                 ResolutionInfo(
                     info: 'IVA:',
-                    data: '${amountController.text} * $vatRateConverted '),
+                    data: '${amountController.text} * $labourIncomePayable '),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      'Total a Receber/Pagar:',
+                      'Salário Liquido:',
                       style: TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '${vatPlusAmount.toStringAsFixed(2)}  AOA',
+                      '$salarioLiquido  AOA',
                       style: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),

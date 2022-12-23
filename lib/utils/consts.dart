@@ -2,8 +2,9 @@
 const String homePage = '/';
 //SimpleInterests Route Names
 const String calcSimpleInterest = '/calc_simple_interest';
-//Calc VAT and NIB
+//Calc VAT/NIB/INSS
 const String calcVatPage = '/calc_vat';
+const String calcInssPage = '/calc_inss';
 //CompoundInterests Route Names
 const String calcTermPage = '/calc_term';
 const String calcPrincipalPage = '/calc_principal';

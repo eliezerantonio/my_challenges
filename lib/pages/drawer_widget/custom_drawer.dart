@@ -97,7 +97,7 @@ class CustomDrawer extends StatelessWidget {
                           onTap: () => Navigator.pushReplacementNamed(
                               context, calcSimpleInterest),
                           child: const CustomListTile(
-                            text: 'Juros Prota',
+                            text: 'Juros Pro Rata',
                             icon: Icon(Icons.account_balance_wallet_rounded,
                                 color: Colors.blue),
                           ),
@@ -163,14 +163,14 @@ class CustomDrawer extends StatelessWidget {
                           onTap: () => Navigator.pushReplacementNamed(
                               context, calcVatPage),
                           child: const CustomListTile(
-                            text: 'IRT',
+                            text: 'IVA',
                             icon: Icon(Icons.calculate, color: Colors.blue),
                           ),
                         ),
                         const SizedBox(height: 10.0),
                         GestureDetector(
                           onTap: () => Navigator.pushReplacementNamed(
-                              context, calcSimpleInterest),
+                              context, calcInssPage),
                           child: const CustomListTile(
                             text: 'INSS',
                             icon: Icon(Icons.calculate, color: Colors.blue),
