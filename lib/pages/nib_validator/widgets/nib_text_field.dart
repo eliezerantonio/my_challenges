@@ -17,9 +17,11 @@ class _NibTextFieldState extends State<NibTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 20,
+      height: 35,
       child: TextField(
-        cursorWidth: 0.5,
+        maxLength: 25,
+        cursorWidth: 1,
+        //enableInteractiveSelection: false,
         onChanged: (value) => setState(() {
           capitalText = value;
         }),
@@ -27,8 +29,9 @@ class _NibTextFieldState extends State<NibTextField> {
         keyboardType: TextInputType.number,
         style: const TextStyle(
             fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black),
-        decoration:
-            const InputDecoration(hintText: 'AO66.0066.0000.4524.5476.5643.89'),
+        decoration: const InputDecoration(
+            helperText: 'Exe: 0066.0000.1234.4321.1234.12',
+            prefixText: 'AO06 '),
       ),
     );
   }

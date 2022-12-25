@@ -1,10 +1,14 @@
-class ValidateIban {
+import 'bank_acronym_list.dart';
+
+class ValidateBankDetails {
   String validateBankAcronym(String insertedIban) {
+    BankAcronymList list = BankAcronymList();
     //Removing any Special Character
     String ibanConverted = insertedIban.trim().replaceAll(RegExp('[^0-9]'), '');
-    //Variable to Store Bank Code Number
+    //Variable to Store Bank Code Number and Acronym Generated
     String bankShortCode = '';
     String bankAcronymGenerated = '';
+
     //List of IBAN Codes
     var angolanIbans = {
       'BAI': '0040',
@@ -36,17 +40,17 @@ class ValidateIban {
       'SBA': '0060',
       'SCBA': '0063',
     };
-    //Joining All Separeted Digits
-    bankShortCode = ibanConverted.substring(0, 4);
-    //Check if IBAN inserted has specific character to give the result
-    for (var val in angolanIbans.keys) {
-      if (angolanIbans[val] == bankShortCode) {
-        print('The Code ${angolanIbans[val]}, Belongs To Bank ' '$val.');
-        return bankAcronymGenerated = val;
+    try {
+      //Joining All Separeted Digits
+      bankShortCode = ibanConverted.substring(0, 4);
+      //Check if IBAN Inserted Has Specific Code Number (2) To Query.
+      for (var val in angolanIbans.keys) {
+        if (angolanIbans[val] == bankShortCode) {
+          return bankAcronymGenerated = val;
+        }
       }
-    }
-    if (bankAcronymGenerated != bankShortCode) {
-      return 'This IBAN Probably Does Not Exists.';
+    } catch (e) {
+      return bankAcronymGenerated = 'Dados Inseridos Invalidos.';
     }
 
     return bankAcronymGenerated;
@@ -85,14 +89,15 @@ class ValidateIban {
       'SBICAOLU': 'SBA',
       'SCBLAOLU': 'SCBA',
     };
-    //Check if IBAN inserted has specific character to give the result
-    for (var val in swiftList.keys) {
-      if (swiftList[val] == swiftGiven) {
-        return swiftCodeGenerated = val;
+    try {
+      //Check if IBAN inserted has specific character to give the result
+      for (var val in swiftList.keys) {
+        if (swiftList[val] == swiftGiven) {
+          return swiftCodeGenerated = val;
+        }
       }
-    }
-    if (swiftCodeGenerated != swiftGiven) {
-      print('This SWIFT Probably Does Not Exists.');
+    } catch (e) {
+      swiftCodeGenerated = 'Dados Inseridos Invalidos.';
     }
 
     return swiftCodeGenerated;
@@ -131,14 +136,15 @@ class ValidateIban {
       'STANDARD BANK DE ANGOLA S.A.': 'SBA',
       'STANDARD CHARTERED BANK ANGOLA SA': 'SCBA',
     };
-    //Check if IBAN inserted has specific character to give the result
-    for (var val in swiftList.keys) {
-      if (swiftList[val] == swiftGiven) {
-        return swiftCodeGenerated = val;
+    try {
+      //Check if IBAN inserted has specific character to give the result
+      for (var val in swiftList.keys) {
+        if (swiftList[val] == swiftGiven) {
+          return swiftCodeGenerated = val;
+        }
       }
-    }
-    if (swiftCodeGenerated != swiftGiven) {
-      print('This SWIFT Probably Does Not Exists.');
+    } catch (e) {
+      return swiftCodeGenerated = 'Dados Inseridos Invalidos.';
     }
 
     return swiftCodeGenerated;
