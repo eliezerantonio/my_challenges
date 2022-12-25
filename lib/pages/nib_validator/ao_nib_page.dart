@@ -217,10 +217,7 @@ class _CenterCardState extends State<CenterCard> {
                 const SizedBox(height: 10.0),
                 const ResolutionInfo(info: 'Código do Banco:', data: '0066'),
                 const SizedBox(height: 10.0),
-                const ResolutionInfo(
-                    info: 'Os Demais, São De Rastreio', data: 'Rastreio.'),
-                const Divider(),
-                const SizedBox(height: 15.0),
+                const ResolutionInfo(info: 'Código do Banco:', data: '89'),
               ],
             ),
           ],
