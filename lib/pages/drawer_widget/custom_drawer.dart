@@ -23,23 +23,7 @@ class CustomDrawer extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    height: 40,
-                    width: double.infinity,
-                    color: Colors.blue,
-                    child: Center(
-                      child: BounceInUp(
-                        child: const Text(
-                          'Mini - Contabil',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Poppins',
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ),
+                  drawerHeader(),
                   InkWell(
                     onTap: () {
                       Navigator.pushReplacementNamed(context, homePage);
@@ -48,37 +32,12 @@ class CustomDrawer extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10.0, vertical: 10.0),
                       child: FadeInUp(
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.cabin_rounded,
-                              color: Colors.blue,
-                            ),
-                            SizedBox(width: 10.0),
-                            Text(
-                              'Inicio',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontFamily: 'Poppins',
-                                color: Colors.black54,
-                              ),
-                            ),
-                          ],
-                        ),
+                        child: homeRouteAndTitle(),
                       ),
                     ),
                   ),
                   const Divider(height: 0.1, indent: 5, endIndent: 5),
-                  const ListTile(
-                      textColor: Colors.blue,
-                      title: Text(
-                        'JUROS SIMPLES',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13.0,
-                          fontFamily: 'Poppins',
-                        ),
-                      )),
+                  buildTileTag('JUROS SIMPLES'),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Column(
@@ -92,7 +51,7 @@ class CustomDrawer extends StatelessWidget {
                                 color: Colors.blue),
                           ),
                         ),
-                        const SizedBox(height: 10.0),
+                        const SizedBox(height: 15.0),
                         GestureDetector(
                           onTap: () => Navigator.pushReplacementNamed(
                               context, calcSimpleInterest),
@@ -106,17 +65,7 @@ class CustomDrawer extends StatelessWidget {
                     ),
                   ),
                   const Divider(height: 0.1, indent: 5, endIndent: 5),
-                  ListTile(
-                      onTap: () {},
-                      textColor: Colors.blue,
-                      title: const Text(
-                        'JUROS COMPOSTO',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13.0,
-                          fontFamily: 'Poppins',
-                        ),
-                      )),
+                  buildTileTag('JUROS COMPOSTO'),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Column(
@@ -130,7 +79,7 @@ class CustomDrawer extends StatelessWidget {
                                 color: Colors.blue),
                           ),
                         ),
-                        const SizedBox(height: 10.0),
+                        const SizedBox(height: 15.0),
                         GestureDetector(
                           onTap: () => Navigator.pushReplacementNamed(
                               context, calcSimpleInterest),
@@ -144,17 +93,7 @@ class CustomDrawer extends StatelessWidget {
                     ),
                   ),
                   const Divider(height: 0.1, indent: 5, endIndent: 5),
-                  ListTile(
-                      onTap: () {},
-                      textColor: Colors.blue,
-                      title: const Text(
-                        'OUTRAS CALCULADORAS',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13.0,
-                          fontFamily: 'Poppins',
-                        ),
-                      )),
+                  buildTileTag('OUTRAS CALCULADORAS'),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Column(
@@ -167,7 +106,7 @@ class CustomDrawer extends StatelessWidget {
                             icon: Icon(Icons.calculate, color: Colors.blue),
                           ),
                         ),
-                        const SizedBox(height: 10.0),
+                        const SizedBox(height: 15.0),
                         GestureDetector(
                           onTap: () => Navigator.pushReplacementNamed(
                               context, calcInssPage),
@@ -176,12 +115,12 @@ class CustomDrawer extends StatelessWidget {
                             icon: Icon(Icons.calculate, color: Colors.blue),
                           ),
                         ),
-                        const SizedBox(height: 10.0),
+                        const SizedBox(height: 15.0),
                         GestureDetector(
                           onTap: () => Navigator.pushReplacementNamed(
                               context, calcNibPage),
                           child: const CustomListTile(
-                            text: 'IBAN',
+                            text: 'VERIFICADOR DE IBAN',
                             icon:
                                 Icon(Icons.account_balance, color: Colors.blue),
                           ),
@@ -190,16 +129,7 @@ class CustomDrawer extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const ListTile(
-                      textColor: Colors.blue,
-                      title: Text(
-                        'MAIS OPÇÕES',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13.0,
-                          fontFamily: 'Poppins',
-                        ),
-                      )),
+                  buildTileTag('MAIS OPÇÕES'),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Column(
@@ -212,7 +142,7 @@ class CustomDrawer extends StatelessWidget {
                             icon: Icon(Icons.language, color: Colors.orange),
                           ),
                         ),
-                        const SizedBox(height: 5.0),
+                        const SizedBox(height: 10.0),
                         Consumer<ThemeProvider>(
                           builder: (context, provider, child) {
                             return GestureDetector(
@@ -227,7 +157,7 @@ class CustomDrawer extends StatelessWidget {
                             );
                           },
                         ),
-                        const SizedBox(height: 5.0),
+                        const SizedBox(height: 10.0),
                         GestureDetector(
                           onTap: () => showDialog(
                               context: context,
@@ -242,9 +172,7 @@ class CustomDrawer extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Center(
-                    child: Text('version: 2.0'),
-                  )
+                  versionInformation()
                 ],
               ),
             ),
@@ -252,5 +180,65 @@ class CustomDrawer extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Container drawerHeader() {
+    return Container(
+      height: 40,
+      width: double.infinity,
+      color: Colors.blue,
+      child: Center(
+        child: BounceInUp(
+          child: const Text(
+            'Mini - Contabil',
+            style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Poppins',
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Row homeRouteAndTitle() {
+    return Row(
+      children: const [
+        Icon(
+          Icons.cabin_rounded,
+          color: Colors.blue,
+        ),
+        SizedBox(width: 10.0),
+        Text(
+          'Inicio',
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            fontFamily: 'Poppins',
+            color: Colors.black54,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Center versionInformation() {
+    return const Center(
+      child: Text('version: 2.0',
+          style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w200)),
+    );
+  }
+
+  ListTile buildTileTag(String text) {
+    return ListTile(
+        textColor: Colors.blue,
+        title: Text(
+          text,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 13.0,
+            fontFamily: 'Poppins',
+          ),
+        ));
   }
 }
