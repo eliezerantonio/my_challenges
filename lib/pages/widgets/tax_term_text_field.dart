@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
-class GeneralTextField extends StatefulWidget {
-  const GeneralTextField({
+class TaxAndTermTextField extends StatefulWidget {
+  const TaxAndTermTextField({
     Key? key,
     required this.controller,
     required this.hintText,
+    required this.suffixText,
   }) : super(key: key);
   final TextEditingController? controller;
   final String hintText;
+  final String suffixText;
   @override
-  State<GeneralTextField> createState() => _GeneralTextFieldState();
+  State<TaxAndTermTextField> createState() => _TaxAndTermTextFieldState();
 }
 
-class _GeneralTextFieldState extends State<GeneralTextField> {
+class _TaxAndTermTextFieldState extends State<TaxAndTermTextField> {
   String capitalText = '';
   String valueConverted = '';
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 110,
       height: 20,
       child: TextField(
         cursorWidth: 0.5,
-        inputFormatters: [
-          CurrencyInputFormatter(
-              thousandSeparator: ThousandSeparator.None, trailingSymbol: ' Kz'),
-        ],
         onChanged: (value) => setState(() {
           String valueConverted = value.trim().replaceAll(RegExp('[^0-9]'), '');
           capitalText = valueConverted;
@@ -35,7 +32,8 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
         keyboardType: TextInputType.number,
         style: const TextStyle(
             fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black),
-        decoration: InputDecoration(hintText: widget.hintText),
+        decoration:
+            InputDecoration(hintText: widget.hintText, suffixText: widget.suffixText),
       ),
     );
   }

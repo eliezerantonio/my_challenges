@@ -7,7 +7,7 @@ import '../drawer_widget/custom_drawer.dart';
 import '../simple_interest/widgets/left_title.dart';
 import '../simple_interest/widgets/resolution_tag.dart';
 import '../widgets/calc_button.dart';
-import '../widgets/general_text_field.dart';
+import '../widgets/interests_text_field.dart';
 
 class CalcVatPage extends StatefulWidget {
   const CalcVatPage({
@@ -121,7 +121,7 @@ class _CenterCardState extends State<CenterCard> {
                     const SizedBox(height: 15.0),
                     const LeftTitle(text: 'Valor:'),
                     const SizedBox(height: 20.0),
-                    GeneralTextField(
+                    SimpleInterestTextField(
                         controller: amountController, hintText: '1,000.00'),
                   ],
                 ),
@@ -196,8 +196,9 @@ class _CenterCardState extends State<CenterCard> {
                 const SizedBox(height: 15.0),
                 ResolutionInfo(
                     info: 'IVA:',
-                    data:
-                        '${amountToConvert.convertDouble(double.parse(amountController.text))} * $vatRateConverted '),
+                    data: amountController.text.isEmpty
+                        ? 'Valor * Taxa 14%'
+                        : '${amountController.text} * $vatRateConverted'),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 Row(

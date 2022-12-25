@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CardWidget extends StatelessWidget {
+class CardWidget extends StatefulWidget {
   final String title;
   final String description;
   final String urlImage;
@@ -17,10 +17,15 @@ class CardWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<CardWidget> createState() => _CardWidgetState();
+}
+
+class _CardWidgetState extends State<CardWidget> {
+  @override
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.all(8),
         child: Container(
-          color: color,
+          color: widget.color,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [],
@@ -29,25 +34,25 @@ class CardWidget extends StatelessWidget {
       );
 
   Widget buildImage() => Image.asset(
-        urlImage,
+        widget.urlImage,
         width: double.infinity,
         fit: BoxFit.cover,
       );
 
   Widget buildText() => Container(
-        color: color,
+        color: widget.color,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title,
+              widget.title,
               style: const TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              subtitle,
+              widget.subtitle,
               style: const TextStyle(
                 fontSize: 16,
                 fontStyle: FontStyle.italic,
@@ -55,7 +60,7 @@ class CardWidget extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              description,
+              widget.description,
               style: const TextStyle(fontSize: 18),
             ),
           ],

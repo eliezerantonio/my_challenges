@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:mini_contabil_v2/pages/simple_interest/widgets/resolution_info.dart';
+import 'package:mini_contabil_v2/pages/widgets/interests_text_field.dart';
+import 'package:mini_contabil_v2/pages/widgets/tax_term_text_field.dart';
 
 import '../../utils/format_number_currency.dart';
 import '../drawer_widget/custom_drawer.dart';
 import '../widgets/calc_button.dart';
-import '../widgets/general_text_field.dart';
 import 'widgets/left_title.dart';
 import 'widgets/resolution_tag.dart';
 
@@ -134,7 +135,7 @@ class _CenterCardState extends State<CenterCard> {
                     const SizedBox(height: 15.0),
                     const LeftTitle(text: 'Capital Inicial (c):'),
                     const SizedBox(height: 20.0),
-                    GeneralTextField(
+                    SimpleInterestTextField(
                         controller: capitalController, hintText: '1,000.00'),
                   ],
                 ),
@@ -148,9 +149,12 @@ class _CenterCardState extends State<CenterCard> {
                       children: [
                         const LeftTitle(text: 'Taxa de Juros % (i):'),
                         const SizedBox(height: 20.0),
-                        GeneralTextField(
-                          controller: rateController,
-                          hintText: '5',
+                        SizedBox(
+                          width: 85,
+                          child: TaxAndTermTextField(
+                              controller: rateController,
+                              hintText: '5',
+                              suffixText: ' %'),
                         ),
                         SizedBox(
                           width: 85,
@@ -182,8 +186,13 @@ class _CenterCardState extends State<CenterCard> {
                       children: [
                         const LeftTitle(text: 'Tempo (n):'),
                         const SizedBox(height: 20.0),
-                        GeneralTextField(
-                            controller: termController, hintText: '2'),
+                        SizedBox(
+                          width: 85,
+                          child: TaxAndTermTextField(
+                              controller: termController,
+                              hintText: '2',
+                              suffixText: ' '),
+                        ),
                         SizedBox(
                           width: 85,
                           height: 40,
@@ -311,8 +320,11 @@ class _CenterCardState extends State<CenterCard> {
                 const SizedBox(height: 15.0),
                 ResolutionInfo(
                     info: 'j:',
-                    data:
-                        '${capitalController.text} * ${rateController.text} * ${termController.text}'),
+                    data: capitalController.text.isEmpty ||
+                            rateController.text.isEmpty ||
+                            termController.text.isEmpty
+                        ? 'Capital Inicial * Taxa * Tempo'
+                        : '${amountToConvert.convertDouble(double.parse(capitalController.text))} * ${rateController.text} * ${termController.text}'),
                 const Divider(),
                 const SizedBox(height: 15.0),
                 ResolutionInfo(

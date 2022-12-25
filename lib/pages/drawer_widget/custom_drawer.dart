@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:mini_contabil_v2/pages/widgets/custom_dialog.dart';
-import 'package:mini_contabil_v2/providers/theme_provider.dart';
 import 'package:mini_contabil_v2/utils/consts.dart';
-import 'package:provider/provider.dart';
 
 import 'custom_list_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -143,19 +140,12 @@ class CustomDrawer extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 10.0),
-                        Consumer<ThemeProvider>(
-                          builder: (context, provider, child) {
-                            return GestureDetector(
-                              onTap: () {
-                                provider.changeTheme('light');
-                              },
-                              child: const CustomListTile(
-                                text: 'Light Mode',
-                                icon: Icon(Icons.light_mode,
-                                    color: Colors.orange),
-                              ),
-                            );
-                          },
+                        GestureDetector(
+                          onTap: () {},
+                          child: const CustomListTile(
+                            text: 'Light Mode',
+                            icon: Icon(Icons.light_mode, color: Colors.orange),
+                          ),
                         ),
                         const SizedBox(height: 10.0),
                         GestureDetector(

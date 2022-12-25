@@ -41,7 +41,7 @@ dependencies:
   pattern_formatter: ^2.0.0
   shared_preferences: any
   provider: any
-  intl:
+  flutter_multi_formatter: any
   
 
 dev_dependencies:

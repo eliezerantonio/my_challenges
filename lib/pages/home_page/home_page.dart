@@ -20,6 +20,21 @@ class _HomePageState extends State<HomePage> {
   final pageController = PageController(viewportFraction: 0.9);
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   int currentIndex = 0;
+  Image backgroundImage = Image.asset('assets/background2.jpg');
+
+  //Load image
+  @override
+  void initState() {
+    super.initState();
+    backgroundImage;
+  }
+
+  //Precache image
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(backgroundImage.image, context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +44,7 @@ class _HomePageState extends State<HomePage> {
         drawer: const CustomDrawer(),
         body: Stack(children: [
           const RiveAnimation.asset('assets/homepage.riv'),
-          Image.asset(
-            'assets/background2.jpg',
-          ),
+          backgroundImage,
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),

@@ -1,14 +1,10 @@
-import 'bank_acronym_list.dart';
-
 class ValidateBankDetails {
   String validateBankAcronym(String insertedIban) {
-    BankAcronymList list = BankAcronymList();
     //Removing any Special Character
     String ibanConverted = insertedIban.trim().replaceAll(RegExp('[^0-9]'), '');
     //Variable to Store Bank Code Number and Acronym Generated
     String bankShortCode = '';
     String bankAcronymGenerated = '';
-
     //List of IBAN Codes
     var angolanIbans = {
       'BAI': '0040',

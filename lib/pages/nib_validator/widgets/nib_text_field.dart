@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 class NibTextField extends StatefulWidget {
   const NibTextField({
@@ -19,8 +20,9 @@ class _NibTextFieldState extends State<NibTextField> {
     return SizedBox(
       height: 35,
       child: TextField(
-        maxLength: 25,
+        maxLength: 27,
         cursorWidth: 1,
+        inputFormatters: [MaskedInputFormatter('####.####.####.####.####.##')],
         //enableInteractiveSelection: false,
         onChanged: (value) => setState(() {
           capitalText = value;
@@ -30,8 +32,10 @@ class _NibTextFieldState extends State<NibTextField> {
         style: const TextStyle(
             fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black),
         decoration: const InputDecoration(
-            helperText: 'Exe: 0066.0000.1234.4321.1234.12',
-            prefixText: 'AO06 '),
+          helperText: 'Exe: 0066.0000.1234.4321.1234.12',
+          hintText: 'Por Favor, Insira Um IBAN...',
+          prefixText: 'AO06 ',
+        ),
       ),
     );
   }

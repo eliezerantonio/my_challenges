@@ -140,13 +140,7 @@ class _CenterCardState extends State<CenterCard> {
                   ],
                 ),
                 const SizedBox(height: 5.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const LeftTitle(text: 'NOME:'),
-                    QueryResultText(text: bankName),
-                  ],
-                ),
+                QueryResultText(text: 'NOME: $bankName'),
                 const SizedBox(height: 5.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
